@@ -1,11 +1,8 @@
-
-import java.util.Scanner;
-
 public class Player {
 	// Methode die den Player bewegt
 	// private String name;
 	private int highscore;
-	private int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
+	private static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
 	private byte herzen;
 	public int level, aktuelles_level;
 
@@ -22,11 +19,11 @@ public class Player {
 		ykoordinate = (int) (Math.random() * max_ykoordinate);
 	}
 
-	public int getX() {
+	public static int getX() {
 		return xkoordinate;
 	}
 
-	public int getY() {
+	public static int getY() {
 		return ykoordinate;
 	}
 
@@ -47,12 +44,13 @@ public class Player {
 
 	public boolean move() {
 		char eingabe = input();
-		
-		// Überprüfung ob Eingabe erfolgte, falls nicht false returnen sodass die Position nicht verändert wird
-		if (eingabe == '') {
-			return false;
-		}
-		
+
+		// Überprüfung ob Eingabe erfolgte, falls nicht false returnen sodass die
+		// Position nicht verändert wird
+		/*
+		 * if (eingabe == '') { return false; }
+		 */
+
 		if (außerhalb_des_feldes()) {
 			return false;
 			// Kann theoretisch noch ausgeben, dass man sich außerhalb des Feldes befindet
@@ -68,8 +66,7 @@ public class Player {
 			++ykoordinate;
 		}
 		return true;
-		
-		
+
 	}
 
 	private boolean außerhalb_des_feldes() {
@@ -96,12 +93,13 @@ public class Player {
 		/*
 		 * // Enter data using BufferReader BufferedReader reader = new
 		 * BufferedReader(new InputStreamReader(System.in));
-		 * 
+		 *
 		 * // Reading data using readLine String name = reader.readLine();
-		 * 
+		 *
 		 * return name;
 		 */
-		return 'a';
+
+		return 'b';
 	}
 
 	private boolean gewonnen() {
