@@ -16,7 +16,7 @@ public class Game {
 
 		schwierigkeit = Integer.parseInt(schwierigkeit_in_string);
 
-		Lasers laser = new Laser(FELD, schwierigkeit);
+//		Lasers laser = new Laser(FELD, schwierigkeit);
 //		Player player = new Player(FELD, HIGHSCORE, LEBEN, schwierigkeit);
 //		Spielfeld spielfeld =new Spielfeld(FELD);
 //
