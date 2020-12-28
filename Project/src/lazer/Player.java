@@ -52,15 +52,14 @@ public class Player {
 	// Methode die Input abfragt
 
 	private char input() {
-
-		/*
-		 * // Enter data using BufferReader BufferedReader reader = new
-		 * BufferedReader(new InputStreamReader(System.in));
-		 * 
-		 * // Reading data using readLine String name = reader.readLine();
-		 * 
-		 * return name;
-		 */
+		int x; /*
+				 * // Enter data using BufferReader BufferedReader reader = new
+				 * BufferedReader(new InputStreamReader(System.in));
+				 * 
+				 * // Reading data using readLine String name = reader.readLine();
+				 * 
+				 * return name;
+				 */
 	}
 
 }
