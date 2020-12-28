@@ -1,29 +1,23 @@
 import java.util.Random;
 
-public class Lazers { char [][] spielfeld;long zuletzt_aufgerufen;long faktor;long swierig;
+public class Lazers { char [][] spielfeld;long zuletzt_aufgerufen;long faktor;
                         boolean todesBereich[][];
 
-        public Lazers(char[][] s,long zeit,int schwierigkeit){
+        public Lazers(char[][] s,int schwierigkeit){
             spielfeld=s;
             zuletzt_aufgerufen=0;
-            swierig=schwierigkeit;
+
             todesBereich =new boolean[spielfeld.length][spielfeld[0].length];
         }
 
 
         public void activateLazers(long ZeitAktuell){
-            faktor=swierig*ZeitAktuell;
+            faktor=ZeitAktuell;
             faktor=100+faktor;
             if(ZeitAktuell>=zuletzt_aufgerufen+faktor){
                 laserSchießen();
             }
-            else {
-                for(int i=0;i< todesBereich.length;i++){
-                    for(int j=0;j< todesBereich[0].length;j++){
-                        todesBereich[i][j]=false;
-                    }
-                }
-            }
+
         }
         private void laserSchießen(){
             int grenze=(int)faktor;
@@ -32,14 +26,14 @@ public class Lazers { char [][] spielfeld;long zuletzt_aufgerufen;long faktor;lo
                 if(OneORTwo<0){
                     int Xshot=getRandomNumberInRange(0,spielfeld.length-1);
                     for(int j=0;j<spielfeld[0].length;j++){
-                        spielfeld[Xshot][j]='L';
+                        spielfeld[Xshot][j]='V';
                         todesBereich[Xshot][j]=true;
                     }
                 }
                 else{
                     int Yshot=getRandomNumberInRange(0,spielfeld[0].length-1);
                     for(int j=0;j<spielfeld.length;j++){
-                        spielfeld[j][Yshot]='L';
+                        spielfeld[j][Yshot]='H';
                         todesBereich[j][Yshot]=true;
 
                     }
@@ -55,4 +49,22 @@ public class Lazers { char [][] spielfeld;long zuletzt_aufgerufen;long faktor;lo
         Random r = new Random();
         return r.nextInt((max - min) + 1) + min;
     }
+    public boolean isInDeath(int x,int y){
+            if(todesBereich[x][y]==true){
+            return true;
+            }
+            else return false;
+    }
+    public void deletlazers(){
+
+            for(int i=0;i< todesBereich.length;i++){
+                for(int j=0;j< todesBereich[0].length;j++){
+                    todesBereich[i][j]=false;
+                    if(spielfeld[i][j]=='V'||spielfeld[i][j]=='H'){
+                        spielfeld[i][j]=' ';
+                    }
+                }
+            }
+        }
+
 }
