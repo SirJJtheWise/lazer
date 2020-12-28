@@ -28,8 +28,8 @@ public class Spielplan {
 
 	public void print() {
 		StringBuilder str = new StringBuilder();
-		//char[][] field = Game.FELD;
-		char[][] field = {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
+		char[][] field = Game.FELD;
+		//char[][] field = {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[]{Player.getX(), Player.getY()};
 		str.append("Welcome to Lazer!\n");
 		str.append("Be fast and set your next position\n");
