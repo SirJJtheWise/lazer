@@ -1,4 +1,8 @@
+import java.io.IOException;
 
 public class Spielplan {
-	int x = 1;
+	public static void main(String[] args) throws IOException {
+		System.out.println("Halloechen");
+		System.out.println("Hello");
+	}
 }
