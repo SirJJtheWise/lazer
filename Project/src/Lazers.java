@@ -1,10 +1,12 @@
+import javax.naming.SizeLimitExceededException;
 import java.util.Random;
 
 public class Lazers {
     char[][] spielfeld;
     long zuletzt_aufgerufen;
+
     long faktor;
-    boolean todesBereich[][];
+    boolean[][] todesBereich;
 
     public Lazers(char[][] s) {
         spielfeld = s;
@@ -25,7 +27,7 @@ public class Lazers {
     }
 
     private void laserSchießen() {
-        int grenze = (int) faktor;
+        int grenze = (int)(1+faktor/10);
         for (int i = 0; i < grenze; i++) {
             //horizointal oder vertikal
             int OneORTwo = getRandomNumberInRange(0, 1);
@@ -79,7 +81,7 @@ public class Lazers {
     public static void main(String[] args){
         char[][] a=new char[5][5];
         Lazers l=new Lazers(a);
-        l.activateLazers(50000);
+        l.activateLazers(3000);
         System.out.println(a[0][0]);
     }
 
