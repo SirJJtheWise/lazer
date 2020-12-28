@@ -1,15 +1,18 @@
+import java.io.BufferedReader;
+import java.util.Scanner;
+
 public class Player {
 	// Methode die den Player bewegt
-	// private String name;
 	private int highscore;
 	private static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
 	private byte herzen;
 	public int level, aktuelles_level;
 
+	Scanner myObj;
+
 	private char alteposition;
 
 	public Player(char[][] spielfeld, int HIGHSCORE, int LEBEN, int SCHWIERIGKEIT) {
-		// this.name = name;
 		highscore = HIGHSCORE;
 		herzen = (byte) LEBEN;
 		level = SCHWIERIGKEIT;
