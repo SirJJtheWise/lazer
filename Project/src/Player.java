@@ -1,4 +1,5 @@
-package lazer;
+
+import java.util.Scanner;
 
 public class Player {
 	// Methode die den Player bewegt
