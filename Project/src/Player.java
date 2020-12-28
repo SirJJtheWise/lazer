@@ -5,7 +5,7 @@ public class Player {
 	// Methode die den Player bewegt
 	private String name;
 	private int highscore;
-	private int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
+	private static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
 	private byte herzen;
 
 	public Player(String name, char[][] spielfeld) {
@@ -16,11 +16,11 @@ public class Player {
 		ykoordinate = (int) (Math.random() * max_ykoordinate);
 	}
 
-	public int getX() {
+	public static int getX() {
 		return xkoordinate;
 	}
 
-	public int getY() {
+	public static int getY() {
 		return ykoordinate;
 	}
 
