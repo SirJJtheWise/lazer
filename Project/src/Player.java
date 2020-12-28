@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.util.Scanner;
+import java.io.InputStreamReader;
 
 public class Player {
 	// Methode die den Player bewegt
@@ -15,7 +16,6 @@ public class Player {
 		Spielplan test = new Spielplan();
 
 		p.move(a);
-
 		test.print();
 
 	}
@@ -37,20 +37,23 @@ public class Player {
 	}
 
 	public void move(char[][] feld) {
-		long startTime = System.currentTimeMillis();
-		Scanner myObj = new Scanner(System.in);
-		String name = "x";
-		while (5000 > (long) System.currentTimeMillis() - startTime) {
-			if (myObj.hasNext()) {
-				name = myObj.nextLine();
-				if (name != null) {
-					myObj.close();
-					break;
-				}
-			}
-		}
-		if (name == null)
-			return;
+//
+//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+//
+//		String name = "x";
+//		long end = System.currentTimeMillis() + (long) 5000;
+//		while ((System.currentTimeMillis() < end)) {
+//			if (reader.available() > 0)
+//				name += reader.readLine();
+//		}
+//
+//		bufferedReader.close();
+//
+//		if (name == null) {
+//			System.out.println("Keine Eingabe");
+//			return;
+//		}
+
 		char eingabe = name.charAt(0);
 
 		xneu = xkoordinate;
