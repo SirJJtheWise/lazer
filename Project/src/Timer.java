@@ -5,7 +5,7 @@ import java.io.InputStreamReader;
 public class Timer {
     public static void main(String[] args) throws IOException {
         long endTime = System.currentTimeMillis() + 5000L; // 5 secs
-        while (System.currentTimeMillis() < endTime) {
+        do {
             //Enter data using BufferReader
             BufferedReader reader =
                     new BufferedReader(new InputStreamReader(System.in));
@@ -15,6 +15,6 @@ public class Timer {
 
             // Printing the read line
             System.out.println(name);
-        }
+        } while (System.currentTimeMillis() < endTime);
     }
 }
