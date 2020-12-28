@@ -1,4 +1,4 @@
 
 public class Spielplan {
-	void;
+	int x = 1;
 }
