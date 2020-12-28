@@ -1,27 +1,26 @@
-import java.io.BufferedReader;
 import java.util.Scanner;
 import java.io.InputStreamReader;
 
 public class Player {
 	// Methode die den Player bewegt
-	private String name;
 	private int highscore;
-	private static int xkoordinate, ykoordinate, xneu, yneu, max_xkoordinate, max_ykoordinate;
+	private static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
 	private byte herzen;
+	public int level, aktuelles_level;
+
 	Scanner myObj;
 
-	public static void main(String[] args) {
-		char[][] a = { { 'a', 'a' }, { 'b', 'c' } };
-		Player p = new Player("Kevin", a);
-		Spielplan test = new Spielplan();
+	private char alteposition;
 
-		p.move(a);
-		test.print();
-
+	public void setHerzen(byte herzen) {
+		this.herzen = herzen;
 	}
 
-	public Player(String name, char[][] spielfeld) {
-		this.name = name;
+	public Player(char[][] spielfeld, int HIGHSCORE, int LEBEN, int SCHWIERIGKEIT) {
+		highscore = HIGHSCORE;
+		herzen = (byte) LEBEN;
+		level = SCHWIERIGKEIT;
+
 		max_xkoordinate = spielfeld[0].length;
 		max_ykoordinate = spielfeld[1].length;
 		xkoordinate = (int) (Math.random() * max_xkoordinate);
@@ -36,70 +35,55 @@ public class Player {
 		return ykoordinate;
 	}
 
-	public void move(char[][] feld) {
-//
-//		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-//
-//		String name = "x";
-//		long end = System.currentTimeMillis() + (long) 5000;
-//		while ((System.currentTimeMillis() < end)) {
-//			if (reader.available() > 0)
-//				name += reader.readLine();
-//		}
-//
-//		bufferedReader.close();
-//
-//		if (name == null) {
-//			System.out.println("Keine Eingabe");
-//			return;
-//		}
+	public int getHerzen() {
+		return herzen;
+	}
 
-		char eingabe = name.charAt(0);
+	public char[][] setPlayer(char[][] spielfeld) {
 
-		xneu = xkoordinate;
-		yneu = ykoordinate;
+		if (move() == true) {
+			spielfeld[xkoordinate][ykoordinate] = alteposition;
+			alteposition = spielfeld[xkoordinate][ykoordinate];
+			spielfeld[xkoordinate][ykoordinate] = 'P';
+		}
 
+		return spielfeld;
+	}
+
+	public boolean move() {
+		char eingabe = input();
+
+		// Überprüfung ob Eingabe erfolgte, falls nicht false returnen sodass die
+		// Position nicht verändert wird
+		/*
+		 * if (eingabe == '') { return false; }
+		 */
+
+		if (außerhalb_des_feldes()) {
+			return false;
+			// Kann theoretisch noch ausgeben, dass man sich außerhalb des Feldes befindet
+		}
 		switch (eingabe) {
-		case 'w' -> {
-			++yneu;
-			if (xneu < 0 || xneu >= feld.length || yneu < 0 || yneu >= feld[0].length)
-				return;
-			feld[xkoordinate][yneu] = 'p';
-
+		case 'w':
+			++ykoordinate;
+		case 'a':
+			--xkoordinate;
+		case 'd':
+			++xkoordinate;
+		case 's':
+			++ykoordinate;
 		}
-		case 'a' -> {
-			--xneu;
-			if (xneu < 0 || xneu >= feld.length || yneu < 0 || yneu >= feld[0].length)
-				return;
-			feld[xneu][yneu] = 'p';
-
-		}
-		case 'd' -> {
-			++xneu;
-			if (xneu < 0 || xneu >= feld.length || yneu < 0 || yneu >= feld[0].length)
-				return;
-			feld[xneu][yneu] = 'p';
-		}
-		case 's' -> {
-			--yneu;
-			if (xneu < 0 || xneu >= feld.length || yneu < 0 || yneu >= feld[0].length)
-				return;
-			feld[xneu][yneu] = 'p';
-		}
-		default -> {
-			return;
-		}
-		}
+		return true;
 
 	}
 
-//	private boolean außerhalb_des_feldes() {
-//		if (ykoordinate - 1 < 0 || ykoordinate + 1 >= max_ykoordinate || xkoordinate - 1 < 0
-//				|| xkoordinate + 1 >= max_xkoordinate) {
-//			return true;
-//		}
-//		return false;
-//	}
+	private boolean außerhalb_des_feldes() {
+		if (ykoordinate - 1 < 0 || ykoordinate + 1 >= max_ykoordinate || xkoordinate - 1 < 0
+				|| xkoordinate + 1 >= max_xkoordinate) {
+			return true;
+		}
+		return false;
+	}
 
 	public boolean treffer() {
 		// Gibt zurück ob er tot ist, wobei false = tot und true = lebend
@@ -113,6 +97,7 @@ public class Player {
 	// Methode die Input abfragt
 
 	private char input() {
+
 		/*
 		 * // Enter data using BufferReader BufferedReader reader = new
 		 * BufferedReader(new InputStreamReader(System.in));
@@ -121,7 +106,22 @@ public class Player {
 		 *
 		 * return name;
 		 */
-		return 0;
+
+		return 'g';
+	}
+
+	private boolean gewonnen() {
+		if (level == aktuelles_level && herzen > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean nichtzuende() {
+		if (aktuelles_level <= level && herzen > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }

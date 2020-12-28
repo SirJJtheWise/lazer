@@ -10,7 +10,7 @@ public class Lazers {
 
     public Lazers(char[][] s) {
         spielfeld = s;
-        zuletzt_aufgerufen = 500;
+        zuletzt_aufgerufen = 0;
 
         todesBereich = new boolean[spielfeld.length][spielfeld[0].length];
     }
@@ -18,7 +18,7 @@ public class Lazers {
 
     public void activateLazers(long ZeitAktuell) {
         //faktor der spawnrate und frequenz
-        faktor = ZeitAktuell;
+        faktor = (ZeitAktuell/1000+1);
         //wenn die letzten laser lang genug her sind
         if (ZeitAktuell >= zuletzt_aufgerufen + 500) {
             laserSchießen();
@@ -27,22 +27,22 @@ public class Lazers {
     }
 
     private void laserSchießen() {
-        int grenze = (int)(1+faktor/10);
+        int grenze = (int)(faktor);
         for (int i = 0; i < grenze; i++) {
             //horizointal oder vertikal
             int OneORTwo = getRandomNumberInRange(0, 1);
-            if (OneORTwo < 0) {
+            if (OneORTwo > 0) {
                 //vertical
                 int Xshot = getRandomNumberInRange(0, spielfeld.length - 1);
                 for (int j = 0; j < spielfeld[0].length; j++) {
-                    spielfeld[Xshot][j] = 'V';
+                    spielfeld[Xshot][j] = 'v';
                     todesBereich[Xshot][j] = true;
                 }
             } else {
                 //horizontal
                 int Yshot = getRandomNumberInRange(0, spielfeld[0].length - 1);
                 for (int j = 0; j < spielfeld.length; j++) {
-                    spielfeld[j][Yshot] = 'H';
+                    spielfeld[j][Yshot] = 'h';
                     todesBereich[j][Yshot] = true;
 
                 }
@@ -72,17 +72,23 @@ public class Lazers {
         for (int i = 0; i < todesBereich.length; i++) {
             for (int j = 0; j < todesBereich[0].length; j++) {
                 todesBereich[i][j] = false;
-                if (spielfeld[i][j] == 'V' || spielfeld[i][j] == 'H') {
+                if (spielfeld[i][j] == 'v' || spielfeld[i][j] == 'h') {
                     spielfeld[i][j] = ' ';
                 }
             }
         }
     }
     public static void main(String[] args){
-        char[][] a=new char[5][5];
+        char[][] a=new char[16][16];
+
+
+        Game g=new Game();
+        g.FELD=a;
+        Spielplan p=new Spielplan();
         Lazers l=new Lazers(a);
-        l.activateLazers(3000);
-        System.out.println(a[0][0]);
+        l.activateLazers(30000);
+        p.print();
+        System.out.println(a[4][4]);
     }
 
 
