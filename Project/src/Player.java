@@ -3,13 +3,19 @@ import java.util.Scanner;
 
 public class Player {
 	// Methode die den Player bewegt
-	private String name;
+	// private String name;
 	private int highscore;
 	private int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
 	private byte herzen;
+	public int level, aktuelles_level;
 
-	public Player(String name, char[][] spielfeld) {
-		this.name = name;
+	private char alteposition;
+
+	public Player(char[][] spielfeld, int HIGHSCORE, int LEBEN, int SCHWIERIGKEIT) {
+		// this.name = name;
+		highscore = HIGHSCORE;
+		herzen = (byte) LEBEN;
+		level = SCHWIERIGKEIT;
 		max_xkoordinate = spielfeld[0].length;
 		max_ykoordinate = spielfeld[1].length;
 		xkoordinate = (int) (Math.random() * max_xkoordinate);
@@ -24,10 +30,32 @@ public class Player {
 		return ykoordinate;
 	}
 
-	public void move() {
+	public int getHerzen() {
+		return herzen;
+	}
+
+	public char[][] setPlayer(char[][] spielfeld) {
+
+		if (move() == true) {
+			spielfeld[xkoordinate][ykoordinate] = alteposition;
+			alteposition = spielfeld[xkoordinate][ykoordinate];
+			spielfeld[xkoordinate][ykoordinate] = 'P';
+		}
+
+		return spielfeld;
+	}
+
+	public boolean move() {
 		char eingabe = input();
+		
+		// Überprüfung ob Eingabe erfolgte, falls nicht false returnen sodass die Position nicht verändert wird
+		if (eingabe == '') {
+			return false;
+		}
+		
 		if (außerhalb_des_feldes()) {
-			return;
+			return false;
+			// Kann theoretisch noch ausgeben, dass man sich außerhalb des Feldes befindet
 		}
 		switch (eingabe) {
 		case 'w':
@@ -39,6 +67,9 @@ public class Player {
 		case 's':
 			++ykoordinate;
 		}
+		return true;
+		
+		
 	}
 
 	private boolean außerhalb_des_feldes() {
@@ -61,6 +92,7 @@ public class Player {
 	// Methode die Input abfragt
 
 	private char input() {
+
 		/*
 		 * // Enter data using BufferReader BufferedReader reader = new
 		 * BufferedReader(new InputStreamReader(System.in));
@@ -69,6 +101,21 @@ public class Player {
 		 * 
 		 * return name;
 		 */
+		return 'a';
+	}
+
+	private boolean gewonnen() {
+		if (level == aktuelles_level && herzen > 0) {
+			return true;
+		}
+		return false;
+	}
+
+	public boolean nichtzuende() {
+		if (aktuelles_level <= level && herzen > 0) {
+			return true;
+		}
+		return false;
 	}
 
 }

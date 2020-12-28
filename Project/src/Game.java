@@ -2,25 +2,32 @@ import java.util.Scanner;
 
 public class Game {
 
-	static boolean ALIVE;
+	// static boolean ALIVE;
 	static char[][] FELD = new char[16][16];
 	static int HIGHSCORE = 0;
 	static int LEBEN = 3;
+	static int schwierigkeit;
 
 	public static void main(String[] args) {
-//		Lasers laser = new Laser(FELD,Schwierigkeit);
-//		Player player = new Player(FELD);
+//		
+		Scanner myObj = new Scanner(System.in);
+		System.out.println("Schwierigkeit eingeben");
+		String schwierigkeit_in_string = myObj.nextLine();
+
+		schwierigkeit = Integer.parseInt(schwierigkeit_in_string);
+
+		Lasers laser = new Laser(FELD, schwierigkeit);
+//		Player player = new Player(FELD, HIGHSCORE, LEBEN, schwierigkeit);
 //		Spielfeld spielfeld =new Spielfeld(FELD);
 //
 
-		System.out.println("Schwierigkeit eingeben");
-
-//		while (ALIVE) {
+//		while (player.nichtzuende()) {
+//			player.setPlayer(FELD);
 //			Lasers.vorwarnung();
 //			Bomben.vorwarnung();
 //			Coin.spawn();
 //			print();
-//			Player.movement();
+//			Player.move();
 //			Lasers();
 //			Bomben();
 //			print();
