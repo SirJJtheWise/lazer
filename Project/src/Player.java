@@ -101,7 +101,7 @@ public class Player {
 		 * return name;
 		 */
 
-		return 'f';
+		return 'g';
 	}
 
 	private boolean gewonnen() {
