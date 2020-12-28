@@ -20,7 +20,6 @@ public class Spielplan {
 	private int widht;
 	private int height;
 	private int[] currPos;
-	private int[] lazerCoords;
 
 	public Spielplan() {
 		this.widht = 5;
@@ -29,8 +28,9 @@ public class Spielplan {
 
 	public void print() {
 		StringBuilder str = new StringBuilder();
-		currPos = new int[]{1, 1};
-		lazerCoords = new int[]{2, 3};
+		char[][] field = Game.FELD;
+		//char[][] field = {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
+		currPos = new int[]{Player.getX(), Player.getY()};
 		str.append("Welcome to Lazer!\n");
 		str.append("Be fast and set your next position\n");
 		str.append("Your current position: ");
@@ -41,33 +41,23 @@ public class Spielplan {
 		str.append("Number of Lazers active: ");
 		str.append(1);
 		str.append("\n");
-		for (int w = 0; w < widht; w++) {
-			if (lazerCoords != null && w == lazerCoords[0]) {
-				str.append("--");
-				str.append(ANSI_RED);
-				str.append("---");
-				str.append(ANSI_RESET);
-				str.append("-");
-			} else str.append("------");
+		for (int w = 0; w < field.length; w++) {
+			str.append("------");
 		}
 		str.append("\n");
-		for (int h = 0; h < height ; h++) {
+		for (int h = 0; h < field[0].length ; h++) {
 			for (int n = 0; n < 2; n++) {
-				for (int w = 0; w < widht; w++) {
-					if (lazerCoords != null && h == lazerCoords[1]) {
-						str.append(ANSI_RED);
-						str.append("|");
-						str.append(ANSI_RESET);
-					} else str.append("|");
+				for (int w = 0; w < field.length; w++) {
+					str.append("|");
 					if (w == currPos[0] && h == currPos[1]){
 						str.append(ANSI_YELLOW);
 						str.append("  x  ");
 						str.append(ANSI_RESET);
-					} else if (lazerCoords != null && w == lazerCoords[0]) {
+					} else if (field[w][h] == 'v') {
 						str.append(ANSI_RED);
 						str.append(" ||| ");
 						str.append(ANSI_RESET);
-					} else if (lazerCoords != null && h == lazerCoords[1]) {
+					} else if (field[w][h] == 'h') {
 						str.append(ANSI_RED);
 						str.append(" --- ");
 						str.append(ANSI_RESET);
@@ -76,7 +66,7 @@ public class Spielplan {
 				}
 				str.append("|\n");
 			}
-			for (int w = 0; w < widht; w++) {
+			for (int w = 0; w < field.length; w++) {
 				str.append("------");
 			}
 			str.append("\n");
