@@ -99,7 +99,7 @@ public class Player {
 		 * return name;
 		 */
 
-		return 'c';
+		return 'd';
 	}
 
 	private boolean gewonnen() {
