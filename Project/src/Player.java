@@ -69,6 +69,7 @@ public class Player {
 		 * 
 		 * return name;
 		 */
+		return 0;
 	}
 
 }
