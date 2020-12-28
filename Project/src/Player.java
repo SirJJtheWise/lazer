@@ -16,6 +16,14 @@ public class Player {
 		ykoordinate = (int) (Math.random() * max_ykoordinate);
 	}
 
+	public int getX() {
+		return xkoordinate;
+	}
+
+	public int getY() {
+		return ykoordinate;
+	}
+
 	public void move() {
 		char eingabe = input();
 		if (außerhalb_des_feldes()) {
