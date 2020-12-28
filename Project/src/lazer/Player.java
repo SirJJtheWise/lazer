@@ -1,5 +1,7 @@
 package lazer;
 
+impport 
+
 public class Player {
 	// Methode die den Player bewegt
 	private String name;

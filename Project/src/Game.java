@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 public class Game {
+<<<<<<< HEAD
 	static boolean ALIVE;
 	static char[][] FELD = new char[16][16];
 	static int HIGHSCORE = 0;
@@ -36,4 +37,5 @@ public class Game {
 		}
 		System.out.println("\n " + HIGHSCORE);
 	}
+
 }
