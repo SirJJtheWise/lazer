@@ -64,9 +64,9 @@ public class Player {
 		/*
 		 * // Enter data using BufferReader BufferedReader reader = new
 		 * BufferedReader(new InputStreamReader(System.in));
-		 * 
+		 *
 		 * // Reading data using readLine String name = reader.readLine();
-		 * 
+		 *
 		 * return name;
 		 */
 		return 0;
