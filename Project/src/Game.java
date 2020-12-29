@@ -22,16 +22,19 @@ public class Game implements Runnable {
 		if (sc.hasNextInt()) {
 			SCHWIERIGKEIT = sc.nextInt();
 		}
-
-		Thread thread = new Thread(new Player(spiel));
+		Lazers laser = new Lazers(spiel.FELD);
+		Thread thread = new Thread(new Player(spiel, laser));
+		spiel.print();
 		thread.start();
 
-		Lazers laser = new Lazers(spiel.FELD);
-		spiel.print();
-
 		while (LEBEN >= 0) {
-			laser.deletlazers();
+			System.out.println("HIGHSCORE: " + HIGHSCORE);
 
+			laser.deletlazers();
+			// delete Coin
+			// spawn Coin
+
+			// Vorwarnung
 			laser.laserSchießen();
 			spiel.print();
 			try {
@@ -39,24 +42,17 @@ public class Game implements Runnable {
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
+			// laser.schie0en
 			if (laser.isInDeath(Player.getX(), Player.getY())) {
 				LEBEN--;
 				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
 				// ANIMATION??
 			}
+			// print
 			HIGHSCORE += 1000;
 		}
 		thread.stop();
 		System.out.println("GAME" + "\nOver");
-//			player.setPlayer(FELD);
-//			Lasers.vorwarnung();
-//			Bomben.vorwarnung();
-//			Coin.spawn();
-//			print();
-//			Player.move();
-//			Lasers();
-//			Bomben();
-//			print();
 
 	}
 

@@ -11,11 +11,12 @@ public class Player implements Runnable {
 	// public int level, aktuelles_level;
 	Spielplan plan;
 	// private char alteposition;
-	// Lazers laser = new Lazers();
+	Lazers laser;
 
 	public void run() {
 		while (true) {
 			try {
+
 				move();
 
 			} catch (IOException e) {
@@ -26,10 +27,11 @@ public class Player implements Runnable {
 
 	}
 
-	public Player(Spielplan Plan) {
+	public Player(Spielplan Plan, Lazers laser) {
 		// highscore = HIGHSCORE;
 		// herzen = (byte) LEBEN;
 		// level = SCHWIERIGKEIT;
+		this.laser = laser;
 		plan = Plan;
 		max_xkoordinate = 16;
 		max_ykoordinate = 16;
