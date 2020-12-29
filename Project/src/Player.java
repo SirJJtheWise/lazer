@@ -36,6 +36,7 @@ public class Player implements Runnable {
 				move();
 				if (c.letzterCoin[0] == xkoordinate && c.letzterCoin[1] == ykoordinate) {
 					c.deleteCoin();
+					c.generateCoin();
 					Game.HIGHSCORE += 50000;
 				}
 			} catch (IOException e) {
