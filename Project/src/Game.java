@@ -37,7 +37,7 @@ public class Game implements Runnable {
 		thread.start();
 
 		lasers = 8;
-		while (LEBEN >= 0) {
+		while (LEBEN > 0) {
 			lasers++;
 			laser.deletlazers();
 			c.deleteCoin();
