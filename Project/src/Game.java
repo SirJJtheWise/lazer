@@ -76,7 +76,7 @@ public class Game implements Runnable {
 				HIGHSCORE += 1000 * lasers / 8;
 
 			}
-			thread.stop();
+			Player.sleepForever = true;
 			System.out.println("GAME" + "\nOver");
 			if (HIGHESTSCORE < HIGHSCORE)
 				HIGHESTSCORE = HIGHSCORE;
@@ -95,7 +95,7 @@ public class Game implements Runnable {
 			}
 			LEBEN = 3;
 			HIGHSCORE = 3;
-
+			notifyAll();
 			// if(HIGHSCORE>HIGHESTSCORE)
 		}
 
