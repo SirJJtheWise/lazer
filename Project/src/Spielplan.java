@@ -120,7 +120,7 @@ public class Spielplan {
 			str.append("       ");
 	}
 
-	public int startScreen(Scanner sc) throws InterruptedException {
+	public boolean startScreen(Scanner sc) throws InterruptedException {
 		for(int i = 0; i < 50; i++) {
 			str.append("\n\n");
 			for (String line : START_SCREEN) {
@@ -159,7 +159,7 @@ public class Spielplan {
 		str.append("Press A to move left\n");
 		str.append("Press S to move down\n");
 		str.append("Press D to move right\n");
-		str.append("Enter difficulty: ");
+		str.append("Press any key to start");
 		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
 		str.setLength(0); // clear StringBuilder
@@ -170,10 +170,10 @@ public class Spielplan {
 		//String name = reader.readLine();
 		if (sc.hasNextInt()) {
 			//reader.close();
-			return sc.nextInt();
+			return true;
 		}
 		//reader.close();
-		return 0;
+		return false;
 	}
 
 	public void youLostALife() throws InterruptedException {
