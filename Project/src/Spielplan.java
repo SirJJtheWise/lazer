@@ -219,9 +219,9 @@ public class Spielplan {
 		str.append("YOUR HIGHSCORE:\n");
 		str.append(Game.HIGHSCORE);
 		str.append("\n");
-		str.append("HIGHEST HIGHSCORE:\n");
-		str.append(Game.HIGHESTSCORE);
-		str.append("\n\n");
+//		str.append("HIGHEST HIGHSCORE:\n");
+//		str.append(Game.HIGHESTSCORE);
+//		str.append("\n\n");
 		str.append("Press R to restart the Game");
 		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
