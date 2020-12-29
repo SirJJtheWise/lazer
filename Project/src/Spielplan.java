@@ -23,7 +23,7 @@ public class Spielplan {
 	private static final String ANSI_WHITE = "\u001B[37m";
 
 	private int[] currPos;
-	volatile static char[][] field = new char[16][16];
+	volatile static char[][] field = new char[12][12];
   	private StringBuilder str;
 
 	public Spielplan() {
@@ -40,7 +40,7 @@ public class Spielplan {
 		}
 		str.append("\n");
 		for (int h = 0; h < field[0].length; h++) {
-			for (int n = 0; n < 2; n++) {
+			for (int n = 0; n < 3; n++) {
 				for (int w = 0; w < field.length; w++) {
 					fieldOutput(w, h, false, n);
 				}
@@ -111,7 +111,8 @@ public class Spielplan {
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'c') {
 			str.append(ANSI_YELLOW);
-			str.append("   c   ");
+
+			str.append("̅$̅(̲̅5̲̅)̅$");
 			str.append(ANSI_RESET);
 		}else
 			str.append("       ");
