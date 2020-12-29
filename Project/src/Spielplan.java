@@ -4,9 +4,9 @@ import java.io.InputStreamReader;
 import java.util.concurrent.TimeUnit;
 
 public class Spielplan {
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		Spielplan test = new Spielplan();
-		test.youLostALife();
+		test.gameOver();
 	}
 
 	private static final String ANSI_RESET = "\u001B[0m";
@@ -18,6 +18,9 @@ public class Spielplan {
 	private static final String ANSI_PURPLE = "\u001B[35m";
 	private static final String ANSI_CYAN = "\u001B[36m";
 	private static final String ANSI_WHITE = "\u001B[37m";
+
+	private static final String[] GAME_OVER = new String[]{"┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼" ,"███▀▀▀██┼███▀▀▀███┼███▀█▄█▀███┼██▀▀▀" ,"██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼█┼┼┼██┼██┼┼┼" ,"██┼┼┼▄▄▄┼██▄▄▄▄▄██┼██┼┼┼▀┼┼┼██┼██▀▀▀" ,"██┼┼┼┼██┼██┼┼┼┼┼██┼██┼┼┼┼┼┼┼██┼██┼┼┼" ,"███▄▄▄██┼██┼┼┼┼┼██┼██┼┼┼┼┼┼┼██┼██▄▄▄" ,"┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼" ,"███▀▀▀███┼▀███┼┼██▀┼██▀▀▀┼██▀▀▀▀██▄┼" ,"██┼┼┼┼┼██┼┼┼██┼┼██┼┼██┼┼┼┼██┼┼┼┼┼██┼" ,"██┼┼┼┼┼██┼┼┼██┼┼██┼┼██▀▀▀┼██▄▄▄▄▄▀▀┼" ,"██┼┼┼┼┼██┼┼┼██┼┼█▀┼┼██┼┼┼┼██┼┼┼┼┼██┼" ,"███▄▄▄███┼┼┼─▀█▀┼┼─┼██▄▄▄┼██┼┼┼┼┼██▄" ,"┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼██┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼██┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼████▄┼┼┼▄▄▄▄▄▄▄┼┼┼▄████┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼▀▀█▄█████████▄█▀▀┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼█████████████┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼██▀▀▀███▀▀▀██┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼██┼┼┼███┼┼┼██┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼█████▀▄▀█████┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼┼███████████┼┼┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼▄▄▄██┼┼█▀█▀█┼┼██▄▄▄┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼▀▀██┼┼┼┼┼┼┼┼┼┼┼██▀▀┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼▀▀┼┼┼┼┼┼┼┼┼┼┼" ,"┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼┼"};
+	private static final String[] WEIRD_PERSON = new String[]{"⊂_ヽ","　 ＼＼","　　 ＼( ͡° ͜ʖ ͡°)","　　　 >　⌒ヽ","　　　/ 　 へ＼","　　 /　　/　＼＼","　　 ﾚ　ノ　　 ヽ_つ","　　/　/","　 /　/|","　(　(ヽ","　|　|、＼","　| 丿 ＼ ⌒)","　| |　　) /","ノ )　　Lﾉ","(_／"};
 
 	private int[] currPos;
 	volatile static char[][] field = new char[12][12];
@@ -131,6 +134,49 @@ public class Spielplan {
 			str.setLength(0); // clear StringBuilder
 			TimeUnit.MILLISECONDS.sleep(40);
 		}
+	}
+
+	public boolean gameOver() throws InterruptedException, IOException {
+		for(int i = 0; i < 50; i++) {
+			str.append("\n\n");
+			for (String line : GAME_OVER) {
+				for(int n = 0; n < i; n++) {
+					str.append("  ");
+				}
+				str.append(line);
+				str.append("\n");
+			}
+			System.out.print("\033[H\033[2J");
+			System.out.println(str.toString());
+			str.setLength(0); // clear StringBuilder
+			TimeUnit.MILLISECONDS.sleep(40);
+		}
+
+		for (String line : WEIRD_PERSON) {
+			str.append("  ");
+			str.append(line);
+			str.append("  ");
+			str.append("\n");
+		}
+		str.append("YOUR HIGHSCORE:\n");
+		str.append(Game.HIGHSCORE);
+		str.append("\n");
+		str.append("HIGHEST HIGHSCORE:\n");
+		str.append(Game.HIGHESTSCORE);
+		str.append("\n\n");
+		str.append("Press R to restart the Game");
+		System.out.print("\033[H\033[2J");
+		System.out.println(str.toString());
+		str.setLength(0); // clear StringBuilder
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+
+		// Reading data using readLine
+		//if (reader.ready()) {
+			String name = reader.readLine();
+			if (name.equals("R")) return true;
+			return false;
+		//}
+		//return false;
 	}
 
 	private void printHead() {
