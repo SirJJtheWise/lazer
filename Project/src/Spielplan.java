@@ -24,15 +24,15 @@ public class Spielplan {
 	private static final String ANSI_WHITE = "\u001B[37m";
 
 	private int[] currPos;
-	private StringBuilder str;
-	private char[][] field;
+	volatile static char[][] field = new char[16][16];
+  private StringBuilder str;
 
 	public Spielplan() {
 		str = new StringBuilder();
 		field = Game.FELD;
 	}
-
-	public void print() {
+  
+	public synchronized void print() {
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };

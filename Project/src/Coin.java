@@ -2,6 +2,7 @@ import java.math.*;
 
 public class Coin {
 	char[][] Feld;
+	int[] letzterCoin = new int[2];
 
 	public static void main(String[] args) {
 		char[][] b = { { 'a', 'b' }, { 'a', 'b' } };
@@ -21,7 +22,16 @@ public class Coin {
 	}
 
 	public void generateCoin() {
-		int coinFeld = (int) (16 * Math.random());
+		int xCoin = (int) (16 * Math.random());
+		int yCoin = (int) (16 * Math.random());
 
+		Feld[xCoin][yCoin] = 'c';
+		letzterCoin[0] = xCoin;
+		letzterCoin[1] = yCoin;
+
+	}
+
+	public void deleteCoin() {
+		Feld[letzterCoin[0]][letzterCoin[1]] = ' ';
 	}
 }

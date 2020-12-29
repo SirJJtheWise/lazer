@@ -1,12 +1,15 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Game {
+public class Game implements Runnable {
 
 	// static boolean ALIVE;
-	static char[][] FELD = new char[16][16];
+
 	static int HIGHSCORE = 0;
 	static int LEBEN = 3;
-	static int schwierigkeit;
+	static int SCHWIERIGKEIT;
+	Spielplan spiel;
 	private static Player player;
 
 	public Game() {
@@ -17,41 +20,59 @@ public class Game {
 		return player;
 	}
 
-	public static void main(String[] args) {
-//		
-		Scanner myObj = new Scanner(System.in);
-		System.out.println("Schwierigkeit eingeben");
-		String schwierigkeit_in_string = myObj.nextLine();
-
-		schwierigkeit = Integer.parseInt(schwierigkeit_in_string);
-
-//		Lasers laser = new Laser(FELD, schwierigkeit);
-//		Player player = new Player(FELD, HIGHSCORE, LEBEN, schwierigkeit);
-//		Spielfeld spielfeld =new Spielfeld(FELD);
-//
-
-//		while (player.nichtzuende()) {
-//			player.setPlayer(FELD);
-//			Lasers.vorwarnung();
-//			Bomben.vorwarnung();
-//			Coin.spawn();
-//			print();
-//			Player.move();
-//			Lasers();
-//			Bomben();
-//			print();
-//
-//		}
+	public Game(Spielplan spiel) {
+		super();
+		this.spiel = spiel;
 	}
 
-	public static void print() {
-		// print FELD
-		for (int i = 0; i < FELD.length; i++) {
-			for (int j = 0; j < FELD[0].length; j++) {
-				System.out.print(FELD[i][j]);
-			}
+	public void run() {
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Schwierigkeit eingeben");
+		if (sc.hasNextInt()) {
+			SCHWIERIGKEIT = sc.nextInt();
 		}
-		System.out.println("\n " + HIGHSCORE);
+		Lazers laser = new Lazers(spiel.FELD);
+		Thread thread = new Thread(new Player(spiel, laser));
+		spiel.print();
+		thread.start();
+
+		while (LEBEN >= 0) {
+			System.out.println("HIGHSCORE: " + HIGHSCORE);
+
+			laser.deletlazers();
+			// delete Coin
+			// spawn Coin
+
+			// Vorwarnung
+			laser.laserSchießen();
+			spiel.print();
+			try {
+				Thread.sleep(6000);
+			} catch (InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+			// laser.schie0en
+			if (laser.isInDeath(Player.getX(), Player.getY())) {
+				LEBEN--;
+				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
+				// ANIMATION??
+			}
+			// print
+			HIGHSCORE += 1000;
+		}
+		thread.stop();
+		System.out.println("GAME" + "\nOver");
+
+	}
+
+	public static void main(String[] args) {
+
+		Spielplan plan = new Spielplan();
+		Game game = new Game(plan);
+		Thread thread1 = new Thread(game);
+
+		thread1.start();
+
 	}
 
 }

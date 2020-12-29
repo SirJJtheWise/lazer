@@ -3,33 +3,37 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Player {
+public class Player implements Runnable {
 	// Methode die den Player bewegt
 	private int highscore;
 	static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
-	private byte herzen;
-	public int level, aktuelles_level;
+	// private byte herzen;
+	// public int level, aktuelles_level;
 	Spielplan plan;
-	private char alteposition;
+	// private char alteposition;
+	Lazers laser;
 
-	public static void main(String[] args) throws IOException {
+	public void run() {
+		while (true) {
+			try {
+        Player p = new Player(0, 3, 1, plan);
+        Spielplan plan = new Spielplan();
+        Game game = new Game();
+				move();
 
-		Spielplan plan = new Spielplan();
-		Game game = new Game();
-		Player p = new Player(0, 3, 1, plan);
-
-		p.move();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 	}
 
-	public void setHerzen(byte herzen) {
-		this.herzen = herzen;
-	}
-
-	public Player(int HIGHSCORE, int LEBEN, int SCHWIERIGKEIT, Spielplan Plan) {
-		highscore = HIGHSCORE;
-		herzen = (byte) LEBEN;
-		level = SCHWIERIGKEIT;
+	public Player(Spielplan Plan, Lazers laser) {
+		// highscore = HIGHSCORE;
+		// herzen = (byte) LEBEN;
+		// level = SCHWIERIGKEIT;
+		this.laser = laser;
 		plan = Plan;
 		max_xkoordinate = 16;
 		max_ykoordinate = 16;
@@ -45,22 +49,7 @@ public class Player {
 		return ykoordinate;
 	}
 
-	public int getHerzen() {
-		return herzen;
-	}
-
-	public char[][] setPlayer(char[][] spielfeld) throws IOException {
-
-		if (move() == true) {
-			spielfeld[xkoordinate][ykoordinate] = alteposition;
-			alteposition = spielfeld[xkoordinate][ykoordinate];
-			spielfeld[xkoordinate][ykoordinate] = 'P';
-		}
-
-		return spielfeld;
-	}
-
-	public boolean move() throws IOException {
+	public synchronized void move() throws IOException {
 
 		String name = "";
 		long endTime = System.currentTimeMillis() + 5000l;
@@ -80,7 +69,6 @@ public class Player {
 						if (außerhalb_des_feldes()) {
 							ykoordinate++;
 						} else {
-							System.out.print("\033[H\033[2J");
 							plan.print();
 						}
 					}
@@ -90,7 +78,6 @@ public class Player {
 						if (außerhalb_des_feldes()) {
 							xkoordinate++;
 						} else {
-							System.out.print("\033[H\033[2J");
 							plan.print();
 						}
 					}
@@ -100,7 +87,6 @@ public class Player {
 						if (außerhalb_des_feldes()) {
 							xkoordinate--;
 						} else {
-							System.out.print("\033[H\033[2J");
 							plan.print();
 						}
 					}
@@ -110,7 +96,6 @@ public class Player {
 						if (außerhalb_des_feldes()) {
 							ykoordinate--;
 						} else {
-							System.out.print("\033[H\033[2J");
 							plan.print();
 						}
 					}
@@ -121,10 +106,7 @@ public class Player {
 
 			// Printing the read line
 
-		} while (System.currentTimeMillis() < endTime);
-
-		return true;
-
+		} while (true);
 	}
 
 	private boolean außerhalb_des_feldes() {
@@ -134,43 +116,61 @@ public class Player {
 		return false;
 	}
 
-	public boolean treffer() {
-		// Gibt zurück ob er tot ist, wobei false = tot und true = lebend
-		if (herzen == 1) {
-			return false;
-		}
-		--herzen;
-		return true;
-	}
+//	public int getHerzen() {
+//	return herzen;
+//}
+//
+////public char[][] setPlayer(char[][] spielfeld) throws IOException {
+//
+//	 {
+//		spielfeld[xkoordinate][ykoordinate] = alteposition;
+//		alteposition = spielfeld[xkoordinate][ykoordinate];
+//		spielfeld[xkoordinate][ykoordinate] = 'P';
+//	}
+//
+//}	
+
+//	public void setHerzen(byte herzen) {
+//	this.herzen = herzen;
+//}
+
+//	public boolean treffer() {
+//		// Gibt zurück ob er tot ist, wobei false = tot und true = lebend
+//		if (herzen == 1) {
+//			return false;
+//		}
+//		--herzen;
+//		return true;
+//	}
 
 	// Methode die Input abfragt
 
-	private char input() {
+//	private char input() {
+//
+//		/*
+//		 * // Enter data using BufferReader BufferedReader reader = new
+//		 * BufferedReader(new InputStreamReader(System.in));
+//		 *
+//		 * // Reading data using readLine String name = reader.readLine();
+//		 *
+//		 * return name;
+//		 */
+//
+//		return 'g';
+//	}
 
-		/*
-		 * // Enter data using BufferReader BufferedReader reader = new
-		 * BufferedReader(new InputStreamReader(System.in));
-		 *
-		 * // Reading data using readLine String name = reader.readLine();
-		 *
-		 * return name;
-		 */
-
-		return 'g';
-	}
-
-	private boolean gewonnen() {
-		if (level == aktuelles_level && herzen > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean nichtzuende() {
-		if (aktuelles_level <= level && herzen > 0) {
-			return true;
-		}
-		return false;
-	}
+//	private boolean gewonnen() {
+//		if (level == aktuelles_level && herzen > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
+//
+//	public boolean nichtzuende() {
+//		if (aktuelles_level <= level && herzen > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 }
