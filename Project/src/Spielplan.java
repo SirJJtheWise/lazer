@@ -85,37 +85,42 @@ public class Spielplan {
 	private void fieldOutput(int w, int h, boolean indicator) {
 		str.append("|");
 		if (w == currPos[0] && h == currPos[1]) {
-			str.append(ANSI_YELLOW);
+			str.append(ANSI_CYAN);
 			str.append("  x  ");
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'v') {
-			str.append(ANSI_RED);
-			if (indicator)
+			if (indicator) {
+				str.append(ANSI_PURPLE);
 				str.append("  |  ");
-			else
+			}
+			else {
+				str.append(ANSI_RED);
 				str.append(" ||| ");
+			}
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'h') {
-			str.append(ANSI_RED);
-			if (indicator)
+			if (indicator) {
+				str.append(ANSI_PURPLE);
 				str.append("  -  ");
-			else
+			}
+			else {
+				str.append(ANSI_RED);
 				str.append(" --- ");
+			}
 			str.append(ANSI_RESET);
-		} else
+		} else if (field[w][h] == 'c') {
+			str.append(ANSI_YELLOW);
+			str.append("  c  ");
+			str.append(ANSI_RESET);
+		}else
 			str.append("     ");
 	}
 
 	private void printHead() {
 		str.append("Welcome to Lazer!\n");
 		str.append("Be fast and set your next position\n");
-		str.append("Your current position: ");
-		str.append(currPos[0]);
-		str.append(", ");
-		str.append(currPos[1]);
-		str.append("\n");
-		str.append("Number of Lazers active: ");
-		str.append(1);
+		str.append("Your highscore: ");
+		str.append(Game.HIGHSCORE);
 		str.append("\n");
 		str.append("Your lives: ");
 		for(int i = 1; i <= Game.LEBEN; i++) str.append("\u001B[33m♥ \u001B[0m");
