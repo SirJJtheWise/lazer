@@ -1,6 +1,6 @@
 # lazer
 
-![demo](https://github.com/DariaCappey/VSCodeExtension/blob/master/markline/demo_new.gif)
+![demo](https://raw.githubusercontent.com/SirJJtheWise/lazer/master/example.gif)
 
 *compile on commandline with
 ```java
