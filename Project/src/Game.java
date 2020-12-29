@@ -59,7 +59,7 @@ public class Game implements Runnable {
 				HIGHSCORE -= 5000;
 			}
 			// print
-			HIGHSCORE += 1000 * laserZaehler / 8;
+			HIGHSCORE += 1000 * lasers / 8;
 		}
 		thread.stop();
 		System.out.println("GAME" + "\nOver");
