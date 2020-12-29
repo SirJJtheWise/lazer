@@ -21,7 +21,9 @@ public class Player implements Runnable {
 				Spielplan plan = new Spielplan();
 //        Game game = new Game();
 				move();
+				if (c.Feld[0] == xkoordinate && c.Feld[1] == ykoordinate) {
 
+				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
