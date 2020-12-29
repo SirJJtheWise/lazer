@@ -27,9 +27,9 @@ public class Game implements Runnable {
 //		System.out.println("Press D to move right\n");
 
 		Scanner sc = new Scanner(System.in);
-		//System.out.println("Schwierigkeit eingeben");
+		// System.out.println("Schwierigkeit eingeben");
 //		if (sc.hasNextInt()) {
-			//SCHWIERIGKEIT = sc.nextInt();
+		// SCHWIERIGKEIT = sc.nextInt();
 //		}
 		try {
 			SCHWIERIGKEIT = spiel.startScreen(sc);
@@ -45,7 +45,7 @@ public class Game implements Runnable {
 		spiel.print();
 		thread.start();
 		while (true) {
-			lasers = 8+SCHWIERIGKEIT*4-1;
+			lasers = 8 + SCHWIERIGKEIT * 4 - 1;
 			while (LEBEN > 0) {
 				lasers++;
 				laser.deletlazers();
@@ -54,7 +54,7 @@ public class Game implements Runnable {
 				laser.laserSchießen(lasers / 4);
 				spiel.printIndicator();
 				try {
-					Thread.sleep(6000);
+					Thread.sleep(5000l - SCHWIERIGKEIT * 200l - lasers * 10l);
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
@@ -83,7 +83,7 @@ public class Game implements Runnable {
 				HIGHSCORE += 1000 * lasers / 8;
 
 			}
-			thread.stop();
+
 			System.out.println("GAME" + "\nOver");
 			if (HIGHESTSCORE < HIGHSCORE)
 				HIGHESTSCORE = HIGHSCORE;

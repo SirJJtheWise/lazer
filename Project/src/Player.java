@@ -21,6 +21,7 @@ public class Player implements Runnable {
 
 	public void run() {
 		while (true) {
+
 			try {
 				if (sleep) {
 					try {
