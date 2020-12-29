@@ -13,15 +13,15 @@ public class Lazers {
 		todesBereich = new boolean[spielfeld.length][spielfeld[0].length];
 	}
 
-	public void activateLazers(long ZeitAktuell, int faktor) {
-		// faktor der spawnrate und frequenz
-		// @JAsomn!!! faktor = (ZeitAktuell / 1000 + 1);
-		// wenn die letzten laser lang genug her sind
-		// @JAson!!!!!!if (ZeitAktuell >= zuletzt_aufgerufen + 500) {
-		laserSchießen(faktor);
-		// @Jason!!!! }
-
-	}
+//	public void activateLazers(long ZeitAktuell, int faktor) {
+//		// faktor der spawnrate und frequenz
+//		// @JAsomn!!! faktor = (ZeitAktuell / 1000 + 1);
+//		// wenn die letzten laser lang genug her sind
+//		// @JAson!!!!!!if (ZeitAktuell >= zuletzt_aufgerufen + 500) {
+//		laserSchießen(faktor);
+//		// @Jason!!!! }
+//
+//	}
 
 	void laserSchießen(int faktor) {
 		if (faktor > 20) {
