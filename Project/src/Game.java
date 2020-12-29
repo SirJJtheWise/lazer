@@ -54,7 +54,7 @@ public class Game implements Runnable {
 				laser.laserSchießen(lasers / 4);
 				spiel.printIndicator();
 				try {
-					Thread.sleep(5000l - SCHWIERIGKEIT - lasers * 10);
+					Thread.sleep(5000l - SCHWIERIGKEIT * 100 - lasers * 10);
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
