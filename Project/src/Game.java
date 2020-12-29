@@ -47,7 +47,7 @@ public class Game implements Runnable {
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
-				Player.sleepy();
+				Player.setSleep(true);
 
 				c.generateCoin();
 				laser.laserSchießen(lasers / 4);

@@ -13,13 +13,26 @@ public class Player implements Runnable {
 	// private char alteposition;
 	Lazers laser;
 	Coin c;
+	static boolean sleep = false;
+
+	public static void setSleep(boolean sleepy) {
+		sleep = sleepy;
+	}
 
 	public void run() {
 		while (true) {
 			try {
-//        Player p = new Player(plan);
+				if (sleep) {
+					try {
+						Thread.sleep(10000l);
+					} catch (InterruptedException e) {
+						Thread.currentThread().interrupt();
+					}
+					sleep = false;
+				}
+
 				Spielplan plan = new Spielplan();
-//        Game game = new Game();
+
 				move();
 				if (c.letzterCoin[0] == xkoordinate && c.letzterCoin[1] == ykoordinate) {
 					c.deleteCoin();
@@ -31,14 +44,6 @@ public class Player implements Runnable {
 			}
 		}
 
-	}
-
-	public static void sleepy() {
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException ex) {
-			Thread.currentThread().interrupt();
-		}
 	}
 
 	public Player(Spielplan Plan, Lazers laser, Coin coin) {
