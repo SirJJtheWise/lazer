@@ -29,8 +29,9 @@ public class Game implements Runnable {
 			SCHWIERIGKEIT = sc.nextInt();
 		}
 		Lazers laser = new Lazers(spiel.field);
-		Thread thread = new Thread(new Player(spiel, laser));
 		Coin c = new Coin(spiel.field);
+		Thread thread = new Thread(new Player(spiel, laser, c));
+
 		spiel.print();
 		thread.start();
 
