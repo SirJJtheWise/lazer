@@ -37,8 +37,8 @@ public class Player implements Runnable {
 		this.laser = laser;
 		plan = Plan;
 		c = coin;
-		max_xkoordinate = 16;
-		max_ykoordinate = 16;
+		max_xkoordinate = 12;
+		max_ykoordinate = 12;
 		xkoordinate = (int) (Math.random() * max_xkoordinate);
 		ykoordinate = (int) (Math.random() * max_ykoordinate);
 	}

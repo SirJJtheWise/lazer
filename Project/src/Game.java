@@ -20,8 +20,8 @@ public class Game implements Runnable {
 
 		System.out.println("Press W to move up\n");
 		System.out.println("Press A to move left\n");
-		System.out.println("Press W to move downw\n");
-		System.out.println("Press W to move right\n");
+		System.out.println("Press S to move downw\n");
+		System.out.println("Press D to move right\n");
 
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Schwierigkeit eingeben");
