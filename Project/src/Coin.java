@@ -5,9 +5,11 @@ public class Coin {
 	int[] letzterCoin = new int[2];
 
 	public static void main(String[] args) {
-		char[][] b = { { 'a', 'b' }, { 'a', 'b' } };
+		char[][] b = new char[12][12];
 		Coin a = new Coin(b);
 		a.generateCoin();
+		System.out.println(a.letzterCoin[0]);
+		System.out.println(a.letzterCoin[1]);
 		for (int i = 0; i < a.Feld.length; i++) {
 			for (int j = 0; j < a.Feld[i].length; j++) {
 				System.out.println(b[i][j]);
