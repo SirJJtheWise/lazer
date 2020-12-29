@@ -43,6 +43,9 @@ public class Game implements Runnable {
 				lasers++;
 				laser.deletlazers();
 				c.deleteCoin();
+				c.generateCoin();
+				laser.laserSchießen(lasers / 4);
+				spiel.printIndicator();
 				try {
 					Thread.sleep(6000);
 				} catch (InterruptedException ex) {
@@ -50,10 +53,6 @@ public class Game implements Runnable {
 				}
 
 				Player.setSleep(true);
-
-				c.generateCoin();
-				laser.laserSchießen(lasers / 4);
-				spiel.printIndicator();
 
 				spiel.print();
 				if (laser.isInDeath(Player.getX(), Player.getY())) {
