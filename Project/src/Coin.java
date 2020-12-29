@@ -31,7 +31,7 @@ public class Coin {
 
 	}
 
-	public void deleteCoin() {
+	public synchronized void deleteCoin() {
 		Feld[letzterCoin[0]][letzterCoin[1]] = ' ';
 	}
 }

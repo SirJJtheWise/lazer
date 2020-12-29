@@ -7,9 +7,11 @@ public class Game implements Runnable {
 	// static boolean ALIVE;
 
 	static int HIGHSCORE = 0;
+
 	static int LEBEN = 3;
 	static int SCHWIERIGKEIT;
 	Spielplan spiel;
+	static int lasers;
 
 	public Game(Spielplan spiel) {
 		super();
@@ -35,14 +37,14 @@ public class Game implements Runnable {
 		spiel.print();
 		thread.start();
 
-		int laserZaehler = 8;
-		while (LEBEN >= 0) {
-			laserZaehler++;
+		lasers = 8;
+		while (LEBEN > 0) {
+			lasers++;
 			laser.deletlazers();
 			c.deleteCoin();
 
 			c.generateCoin();
-			laser.laserSchießen(laserZaehler / 4);
+			laser.laserSchießen(lasers / 4);
 			spiel.printIndicator();
 
 			try {
@@ -50,7 +52,7 @@ public class Game implements Runnable {
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
-			// laser.schie0en
+			spiel.print();
 			if (laser.isInDeath(Player.getX(), Player.getY())) {
 				LEBEN--;
 				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
@@ -58,7 +60,7 @@ public class Game implements Runnable {
 				HIGHSCORE -= 5000;
 			}
 			// print
-			HIGHSCORE += 1000 * laserZaehler / 8;
+			HIGHSCORE += 1000 * lasers / 8;
 		}
 		thread.stop();
 		System.out.println("GAME" + "\nOver");
