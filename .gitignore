@@ -2,3 +2,4 @@
 out/
 lazer.iml
 /bin/
+*.class
