@@ -25,15 +25,16 @@ public class Spielplan {
 	private int widht;
 	private int height;
 	private int[] currPos;
+	volatile static char[][] FELD = new char[16][16];
 
 	public Spielplan() {
 		this.widht = 5;
 		this.height = 5;
 	}
 
-	public void print() {
+	public synchronized void print() {
 		StringBuilder str = new StringBuilder();
-		char[][] field = Game.FELD;
+		char[][] field = FELD;
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };
@@ -68,7 +69,7 @@ public class Spielplan {
 
 	public void printIndicator() {
 		StringBuilder str = new StringBuilder();
-		char[][] field = Game.FELD;
+		char[][] field = FELD;
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };

@@ -1,27 +1,47 @@
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.Scanner;
 
-public class Game {
+public class Game implements Runnable {
 
 	// static boolean ALIVE;
-	static char[][] FELD = new char[16][16];
+
 	static int HIGHSCORE = 0;
 	static int LEBEN = 3;
-	static int schwierigkeit;
+	static int SCHWIERIGKEIT;
+	Spielplan spiel;
 
-	public static void main(String[] args) {
-//		
-		Scanner myObj = new Scanner(System.in);
+	public Game(Spielplan spiel) {
+		super();
+		this.spiel = spiel;
+	}
+
+	public void run() {
+		Scanner sc = new Scanner(System.in);
 		System.out.println("Schwierigkeit eingeben");
-		String schwierigkeit_in_string = myObj.nextLine();
+		if (sc.hasNextInt()) {
+			SCHWIERIGKEIT = sc.nextInt();
+		}
 
-		schwierigkeit = Integer.parseInt(schwierigkeit_in_string);
+		Thread thread = new Thread(new Player(0, 3, 1, spiel));
+		thread.start();
 
-//		Lasers laser = new Laser(FELD, schwierigkeit);
-//		Player player = new Player(FELD, HIGHSCORE, LEBEN, schwierigkeit);
-//		Spielfeld spielfeld =new Spielfeld(FELD);
-//
+		Lazers laser = new Lazers(spiel.FELD);
+		spiel.print();
 
-//		while (player.nichtzuende()) {
+		while (true) {
+			laser.deletlazers();
+
+			laser.laserSchießen();
+			spiel.print();
+			try {
+				Thread.sleep(6000);
+			} catch (InterruptedException ex) {
+				Thread.currentThread().interrupt();
+			}
+
+		}
+
 //			player.setPlayer(FELD);
 //			Lasers.vorwarnung();
 //			Bomben.vorwarnung();
@@ -31,18 +51,17 @@ public class Game {
 //			Lasers();
 //			Bomben();
 //			print();
-//
-//		}
+
 	}
 
-	public static void print() {
-		// print FELD
-		for (int i = 0; i < FELD.length; i++) {
-			for (int j = 0; j < FELD[0].length; j++) {
-				System.out.print(FELD[i][j]);
-			}
-		}
-		System.out.println("\n " + HIGHSCORE);
+	public static void main(String[] args) {
+
+		Spielplan plan = new Spielplan();
+		Game game = new Game(plan);
+		Thread thread1 = new Thread(game);
+
+		thread1.start();
+
 	}
 
 }

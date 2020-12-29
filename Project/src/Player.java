@@ -3,7 +3,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class Player {
+public class Player implements Runnable {
 	// Methode die den Player bewegt
 	private int highscore;
 	static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
@@ -12,12 +12,15 @@ public class Player {
 	Spielplan plan;
 	private char alteposition;
 
-	public static void main(String[] args) throws IOException {
-
-		Spielplan plan = new Spielplan();
-		Player p = new Player(0, 3, 1, plan);
-
-		p.move();
+	public void run() {
+		while (true) {
+			try {
+				move();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 
 	}
 
@@ -48,18 +51,17 @@ public class Player {
 		return herzen;
 	}
 
-	public char[][] setPlayer(char[][] spielfeld) throws IOException {
+//	public char[][] setPlayer(char[][] spielfeld) throws IOException {
+//
+//		 {
+//			spielfeld[xkoordinate][ykoordinate] = alteposition;
+//			alteposition = spielfeld[xkoordinate][ykoordinate];
+//			spielfeld[xkoordinate][ykoordinate] = 'P';
+//		}
+//
+//	}
 
-		if (move() == true) {
-			spielfeld[xkoordinate][ykoordinate] = alteposition;
-			alteposition = spielfeld[xkoordinate][ykoordinate];
-			spielfeld[xkoordinate][ykoordinate] = 'P';
-		}
-
-		return spielfeld;
-	}
-
-	public boolean move() throws IOException {
+	public synchronized void move() throws IOException {
 
 		String name = "";
 		long endTime = System.currentTimeMillis() + 5000l;
@@ -78,8 +80,10 @@ public class Player {
 						ykoordinate++;
 						if (außerhalb_des_feldes()) {
 							ykoordinate--;
-						} else
+						} else {
 							plan.print();
+						}
+
 					}
 
 					case 'a' -> {
@@ -113,10 +117,7 @@ public class Player {
 
 			// Printing the read line
 
-		} while (System.currentTimeMillis() < endTime);
-
-		return true;
-
+		} while (true);
 	}
 
 	private boolean außerhalb_des_feldes() {
