@@ -1,15 +1,12 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.concurrent.TimeUnit;
 
 public class Spielplan {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		Spielplan test = new Spielplan();
-		test.print();
-		System.out.print("\033[H\033[2J");
-		System.out.println("test123");
-		System.out.print("\033[H\033[2J");
-		test.printIndicator();
+		test.youLostALife();
 	}
 
 	private static final String ANSI_RESET = "\u001B[0m";
@@ -112,10 +109,28 @@ public class Spielplan {
 		} else if (field[w][h] == 'c') {
 			str.append(ANSI_YELLOW);
 
-			str.append("̅$̅(̲̅5̲̅)̅$");
+			str.append("   ₿   ");
 			str.append(ANSI_RESET);
 		}else
 			str.append("       ");
+	}
+
+	public void youLostALife() throws InterruptedException {
+		for(int i = 0; i < 50; i++) {
+			str.append("\n\n");
+			for(int n = 0; n < i; n++) {
+				str.append("  ");
+			}
+			str.append("(;´༎ຶД༎ຶ`)\n\n");
+			for(int n = 0; n < i; n++) {
+				str.append("  ");
+			}
+			str.append("YOU LOST A LIFE!\n");
+			System.out.print("\033[H\033[2J");
+			System.out.println(str.toString());
+			str.setLength(0); // clear StringBuilder
+			TimeUnit.MILLISECONDS.sleep(40);
+		}
 	}
 
 	private void printHead() {
