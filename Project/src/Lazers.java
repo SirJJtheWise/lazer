@@ -5,28 +5,31 @@ public class Lazers {
 	char[][] spielfeld;
 	long zuletzt_aufgerufen;
 
-	long faktor;
 	boolean[][] todesBereich;
 
 	public Lazers(char[][] s) {
 		spielfeld = s;
 		zuletzt_aufgerufen = 0;
-		faktor = 2;
 		todesBereich = new boolean[spielfeld.length][spielfeld[0].length];
 	}
 
-	public void activateLazers(long ZeitAktuell) {
+	public void activateLazers(long ZeitAktuell, int faktor) {
 		// faktor der spawnrate und frequenz
 		// @JAsomn!!! faktor = (ZeitAktuell / 1000 + 1);
 		// wenn die letzten laser lang genug her sind
 		// @JAson!!!!!!if (ZeitAktuell >= zuletzt_aufgerufen + 500) {
-		laserSchießen();
+		laserSchießen(faktor);
 		// @Jason!!!! }
 
 	}
 
-	void laserSchießen() {
-		int grenze = (int) (faktor);
+	void laserSchießen(int faktor) {
+		if (faktor > 20) {
+			faktor = 20;
+		}
+
+		int grenze = faktor;
+
 		for (int i = 0; i < grenze; i++) {
 			// horizointal oder vertikal
 			int OneORTwo = getRandomNumberInRange(0, 1);
