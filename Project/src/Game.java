@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Scanner;
 
@@ -68,7 +69,21 @@ public class Game implements Runnable {
 			}
 			thread.stop();
 			System.out.println("GAME" + "\nOver");
+			if (HIGHESTSCORE < HIGHSCORE)
+				HIGHESTSCORE = HIGHSCORE;
+			try {
+				if (spiel.gameOver()) {
 
+				} else {
+					break;
+				}
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			// if(HIGHSCORE>HIGHESTSCORE)
 		}
 

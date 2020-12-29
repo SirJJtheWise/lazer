@@ -72,58 +72,55 @@ public class Player implements Runnable {
 		String name = "";
 		long endTime = System.currentTimeMillis() + 5000l;
 
-		do {
-			// Enter data using BufferReader
-			BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		// Enter data using BufferReader
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
-			// Reading data using readLine
-			if (reader.ready()) {
-				name = reader.readLine();
-				if (!name.equals("")) {
-					char eingabe = name.charAt(0);
-					switch (eingabe) {
-					case 'w' -> {
-						ykoordinate--;
-						if (außerhalb_des_feldes()) {
-							ykoordinate++;
-						} else {
-							plan.printIndicator();
-						}
-					}
-
-					case 'a' -> {
-						xkoordinate--;
-						if (außerhalb_des_feldes()) {
-							xkoordinate++;
-						} else {
-							plan.printIndicator();
-						}
-					}
-
-					case 'd' -> {
-						xkoordinate++;
-						if (außerhalb_des_feldes()) {
-							xkoordinate--;
-						} else {
-							plan.printIndicator();
-						}
-					}
-
-					case 's' -> {
+		// Reading data using readLine
+		if (reader.ready()) {
+			name = reader.readLine();
+			if (!name.equals("")) {
+				char eingabe = name.charAt(0);
+				switch (eingabe) {
+				case 'w' -> {
+					ykoordinate--;
+					if (außerhalb_des_feldes()) {
 						ykoordinate++;
-						if (außerhalb_des_feldes()) {
-							ykoordinate--;
-						} else {
-							plan.printIndicator();
-						}
-					}
+					} else {
+						plan.printIndicator();
 					}
 				}
 
-			}
-			// Printing the read line
+				case 'a' -> {
+					xkoordinate--;
+					if (außerhalb_des_feldes()) {
+						xkoordinate++;
+					} else {
+						plan.printIndicator();
+					}
+				}
 
-		} while (true);
+				case 'd' -> {
+					xkoordinate++;
+					if (außerhalb_des_feldes()) {
+						xkoordinate--;
+					} else {
+						plan.printIndicator();
+					}
+				}
+
+				case 's' -> {
+					ykoordinate++;
+					if (außerhalb_des_feldes()) {
+						ykoordinate--;
+					} else {
+						plan.printIndicator();
+					}
+				}
+				}
+			}
+
+		}
+		// Printing the read line
 
 	}
 
