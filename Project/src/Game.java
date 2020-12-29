@@ -70,7 +70,6 @@ public class Game implements Runnable {
 			System.out.println("GAME" + "\nOver");
 
 			// if(HIGHSCORE>HIGHESTSCORE)
-
 		}
 
 	}

@@ -143,6 +143,9 @@ public class Spielplan {
 		for (int i = 1; i <= Game.LEBEN; i++)
 			str.append("\u001B[33m♥ \u001B[0m");
 		str.append("\n");
+		str.append("Current number of lasers: ");
+		str.append(Game.lasers/4);
+		str.append("\n");
 	}
 
 }
