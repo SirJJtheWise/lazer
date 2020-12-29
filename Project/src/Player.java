@@ -74,7 +74,7 @@ public class Player implements Runnable {
 						if (außerhalb_des_feldes()) {
 							ykoordinate++;
 						} else {
-							plan.print();
+							plan.printIndicator();
 						}
 					}
 
@@ -83,7 +83,7 @@ public class Player implements Runnable {
 						if (außerhalb_des_feldes()) {
 							xkoordinate++;
 						} else {
-							plan.print();
+							plan.printIndicator();
 						}
 					}
 
@@ -92,7 +92,7 @@ public class Player implements Runnable {
 						if (außerhalb_des_feldes()) {
 							xkoordinate--;
 						} else {
-							plan.print();
+							plan.printIndicator();
 						}
 					}
 
@@ -101,17 +101,17 @@ public class Player implements Runnable {
 						if (außerhalb_des_feldes()) {
 							ykoordinate--;
 						} else {
-							plan.print();
+							plan.printIndicator();
 						}
 					}
 					}
 				}
 
 			}
-
 			// Printing the read line
 
 		} while (true);
+
 	}
 
 	private boolean außerhalb_des_feldes() {
