@@ -24,7 +24,7 @@ public class Player implements Runnable {
 			try {
 				if (sleep) {
 					try {
-						Thread.sleep(1000l);
+						Thread.sleep(2000l);
 					} catch (InterruptedException e) {
 						Thread.currentThread().interrupt();
 					}

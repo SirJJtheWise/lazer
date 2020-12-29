@@ -67,6 +67,12 @@ public class Game implements Runnable {
 						e.printStackTrace();
 					}
 				}
+				try {
+					Thread.sleep(1000);
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+
 				HIGHSCORE += 1000 * lasers / 8;
 
 			}
