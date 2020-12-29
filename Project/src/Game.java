@@ -52,7 +52,7 @@ public class Game implements Runnable {
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
-			// laser.schie0en
+			spiel.print();
 			if (laser.isInDeath(Player.getX(), Player.getY())) {
 				LEBEN--;
 				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
