@@ -170,7 +170,10 @@ public class Spielplan {
 		//String name = reader.readLine();
 		if (sc.hasNextInt()) {
 			//reader.close();
-			return sc.nextInt();
+			int diff = sc.nextInt();
+			if (diff > 10) diff = 10;
+			if (diff < 0) diff = 0;
+			return diff;
 		}
 		//reader.close();
 		return 0;
