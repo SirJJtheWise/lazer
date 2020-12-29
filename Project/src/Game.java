@@ -45,7 +45,7 @@ public class Game implements Runnable {
 		spiel.print();
 		thread.start();
 		while (true) {
-			lasers = 8;
+			lasers = 8+SCHWIERIGKEIT*4-1;
 			while (LEBEN > 0) {
 				lasers++;
 				laser.deletlazers();
