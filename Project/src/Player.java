@@ -33,6 +33,14 @@ public class Player implements Runnable {
 
 	}
 
+	public static void sleepy() {
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException ex) {
+			Thread.currentThread().interrupt();
+		}
+	}
+
 	public Player(Spielplan Plan, Lazers laser, Coin coin) {
 		// highscore = HIGHSCORE;
 		// herzen = (byte) LEBEN;

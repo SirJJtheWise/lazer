@@ -42,16 +42,16 @@ public class Game implements Runnable {
 				lasers++;
 				laser.deletlazers();
 				c.deleteCoin();
-
-				c.generateCoin();
-				laser.laserSchießen(lasers / 4);
-				spiel.printIndicator();
-
 				try {
 					Thread.sleep(6000);
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
+				Player.sleepy();
+
+				c.generateCoin();
+				laser.laserSchießen(lasers / 4);
+				spiel.printIndicator();
 
 				spiel.print();
 				if (laser.isInDeath(Player.getX(), Player.getY())) {
