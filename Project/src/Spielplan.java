@@ -1,12 +1,13 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
 public class Spielplan {
 	public static void main(String[] args) throws InterruptedException, IOException {
 		Spielplan test = new Spielplan();
-		test.startScreen();
+		//test.startScreen();
 	}
 
 	private static final String ANSI_RESET = "\u001B[0m";
@@ -119,7 +120,7 @@ public class Spielplan {
 			str.append("       ");
 	}
 
-	public int startScreen() throws InterruptedException, IOException {
+	public int startScreen(Scanner sc) throws InterruptedException {
 		for(int i = 0; i < 50; i++) {
 			str.append("\n\n");
 			for (String line : START_SCREEN) {
@@ -156,22 +157,22 @@ public class Spielplan {
 				"         \\/____/          \\/____/                  \\/____/                  \\/____/                  \\|___|          \n");
 		str.append("Press W to move up\n");
 		str.append("Press A to move left\n");
-		str.append("Press S to move downw\n");
+		str.append("Press S to move down\n");
 		str.append("Press D to move right\n");
 		str.append("Enter difficulty: ");
 		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
 		str.setLength(0); // clear StringBuilder
-		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+		//BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 
 		// Reading data using readLine
 		//if (reader.ready()) {
-		String name = reader.readLine();
-		if (name != null) {
-			reader.close();
-			return Integer.valueOf(name);
+		//String name = reader.readLine();
+		if (sc.hasNextInt()) {
+			//reader.close();
+			return sc.nextInt();
 		}
-		reader.close();
+		//reader.close();
 		return 0;
 	}
 

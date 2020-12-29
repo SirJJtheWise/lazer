@@ -48,7 +48,7 @@ public class Player implements Runnable {
 				if (c.letzterCoin[0] == xkoordinate && c.letzterCoin[1] == ykoordinate) {
 					c.deleteCoin();
 					c.generateCoin();
-					Game.HIGHSCORE += 50000;
+					Game.HIGHSCORE += 5000;
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
