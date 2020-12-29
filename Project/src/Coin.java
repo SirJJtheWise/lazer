@@ -22,8 +22,8 @@ public class Coin {
 	}
 
 	public void generateCoin() {
-		int xCoin = (int) (16 * Math.random());
-		int yCoin = (int) (16 * Math.random());
+		int xCoin = (int) (12 * Math.random());
+		int yCoin = (int) (12 * Math.random());
 
 		Feld[xCoin][yCoin] = 'c';
 		letzterCoin[0] = xCoin;

@@ -29,8 +29,9 @@ public class Game implements Runnable {
 			SCHWIERIGKEIT = sc.nextInt();
 		}
 		Lazers laser = new Lazers(spiel.field);
-		Thread thread = new Thread(new Player(spiel, laser));
 		Coin c = new Coin(spiel.field);
+		Thread thread = new Thread(new Player(spiel, laser, c));
+
 		spiel.print();
 		thread.start();
 
@@ -42,7 +43,7 @@ public class Game implements Runnable {
 
 			c.generateCoin();
 			laser.laserSchießen(laserZaehler / 4);
-			spiel.print();
+			spiel.printIndicator();
 
 			try {
 				Thread.sleep(6000);
@@ -57,7 +58,7 @@ public class Game implements Runnable {
 				HIGHSCORE -= 5000;
 			}
 			// print
-			HIGHSCORE += 1000;
+			HIGHSCORE += 1000 * laserZaehler / 8;
 		}
 		thread.stop();
 		System.out.println("GAME" + "\nOver");
