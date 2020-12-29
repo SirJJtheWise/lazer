@@ -47,6 +47,7 @@ public class Game implements Runnable {
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
+
 				Player.setSleep(true);
 
 				c.generateCoin();
@@ -69,7 +70,6 @@ public class Game implements Runnable {
 			System.out.println("GAME" + "\nOver");
 
 			// if(HIGHSCORE>HIGHESTSCORE)
-
 		}
 
 	}
