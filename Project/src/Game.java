@@ -10,6 +10,15 @@ public class Game implements Runnable {
 	static int LEBEN = 3;
 	static int SCHWIERIGKEIT;
 	Spielplan spiel;
+	private static Player player;
+
+	public Game() {
+		player = new Player(HIGHSCORE,LEBEN,1,new Spielplan());
+	}
+
+	public static Player getPlayer() {
+		return player;
+	}
 
 	public Game(Spielplan spiel) {
 		super();

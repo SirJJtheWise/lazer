@@ -16,7 +16,9 @@ public class Player implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-
+        Player p = new Player(0, 3, 1, plan);
+        Spielplan plan = new Spielplan();
+        Game game = new Game();
 				move();
 
 			} catch (IOException e) {
@@ -63,33 +65,34 @@ public class Player implements Runnable {
 					char eingabe = name.charAt(0);
 					switch (eingabe) {
 					case 'w' -> {
-						ykoordinate++;
+						ykoordinate--;
 						if (außerhalb_des_feldes()) {
-							ykoordinate--;
+							ykoordinate++;
 						} else {
 							plan.print();
 						}
-
 					}
 
 					case 'a' -> {
 						xkoordinate--;
 						if (außerhalb_des_feldes()) {
 							xkoordinate++;
-						} else
+						} else {
 							plan.print();
+						}
 					}
 
 					case 'd' -> {
 						xkoordinate++;
 						if (außerhalb_des_feldes()) {
 							xkoordinate--;
-						} else
+						} else {
 							plan.print();
+						}
 					}
 
 					case 's' -> {
-						ykoordinate--;
+						ykoordinate++;
 						if (außerhalb_des_feldes()) {
 							ykoordinate--;
 						} else {

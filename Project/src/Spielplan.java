@@ -4,6 +4,7 @@ import java.io.InputStreamReader;
 
 public class Spielplan {
 	public static void main(String[] args) {
+		Game game = new Game();
 		Spielplan test = new Spielplan();
 		test.print();
 		System.out.print("\033[H\033[2J");
@@ -12,42 +13,30 @@ public class Spielplan {
 		test.printIndicator();
 	}
 
-	public static final String ANSI_RESET = "\u001B[0m";
-	public static final String ANSI_BLACK = "\u001B[30m";
-	public static final String ANSI_RED = "\u001B[31m";
-	public static final String ANSI_GREEN = "\u001B[32m";
-	public static final String ANSI_YELLOW = "\u001B[33m";
-	public static final String ANSI_BLUE = "\u001B[34m";
-	public static final String ANSI_PURPLE = "\u001B[35m";
-	public static final String ANSI_CYAN = "\u001B[36m";
-	public static final String ANSI_WHITE = "\u001B[37m";
+	private static final String ANSI_RESET = "\u001B[0m";
+	private static final String ANSI_BLACK = "\u001B[30m";
+	private static final String ANSI_RED = "\u001B[31m";
+	private static final String ANSI_GREEN = "\u001B[32m";
+	private static final String ANSI_YELLOW = "\u001B[33m";
+	private static final String ANSI_BLUE = "\u001B[34m";
+	private static final String ANSI_PURPLE = "\u001B[35m";
+	private static final String ANSI_CYAN = "\u001B[36m";
+	private static final String ANSI_WHITE = "\u001B[37m";
 
-	private int widht;
-	private int height;
 	private int[] currPos;
-	volatile static char[][] FELD = new char[16][16];
+	volatile static char[][] field = new char[16][16];
+  private StringBuilder str;
 
 	public Spielplan() {
-		this.widht = 5;
-		this.height = 5;
+		str = new StringBuilder();
+		field = Game.FELD;
 	}
-
+  
 	public synchronized void print() {
-		StringBuilder str = new StringBuilder();
-		char[][] field = FELD;
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };
-		str.append("Welcome to Lazer!\n");
-		str.append("Be fast and set your next position\n");
-		str.append("Your current position: ");
-		str.append(currPos[0]);
-		str.append(", ");
-		str.append(currPos[1]);
-		str.append("\n");
-		str.append("Number of Lazers active: ");
-		str.append(1);
-		str.append("\n");
+		printHead();
 		for (int w = 0; w < field.length; w++) {
 			str.append("------");
 		}
@@ -55,7 +44,7 @@ public class Spielplan {
 		for (int h = 0; h < field[0].length; h++) {
 			for (int n = 0; n < 2; n++) {
 				for (int w = 0; w < field.length; w++) {
-					fieldOutput(w, h, field, str, false);
+					fieldOutput(w, h, false);
 				}
 				str.append("|\n");
 			}
@@ -65,24 +54,14 @@ public class Spielplan {
 			str.append("\n");
 		}
 		System.out.println(str.toString());
+		str.setLength(0); // clear StringBuilder
 	}
 
 	public void printIndicator() {
-		StringBuilder str = new StringBuilder();
-		char[][] field = FELD;
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };
-		str.append("Welcome to Lazer!\n");
-		str.append("Be fast and set your next position\n");
-		str.append("Your current position: ");
-		str.append(currPos[0]);
-		str.append(", ");
-		str.append(currPos[1]);
-		str.append("\n");
-		str.append("Number of Lazers active: ");
-		str.append(1);
-		str.append("\n");
+		printHead();
 		for (int w = 0; w < field.length; w++) {
 			str.append("------");
 		}
@@ -90,7 +69,7 @@ public class Spielplan {
 		for (int h = 0; h < field[0].length; h++) {
 			for (int n = 0; n < 2; n++) {
 				for (int w = 0; w < field.length; w++) {
-					fieldOutput(w, h, field, str, true);
+					fieldOutput(w, h, true);
 				}
 				str.append("|\n");
 			}
@@ -100,9 +79,10 @@ public class Spielplan {
 			str.append("\n");
 		}
 		System.out.println(str.toString());
+		str.setLength(0); // clear StringBuilder
 	}
 
-	private void fieldOutput(int w, int h, char[][] field, StringBuilder str, boolean indicator) {
+	private void fieldOutput(int w, int h, boolean indicator) {
 		str.append("|");
 		if (w == currPos[0] && h == currPos[1]) {
 			str.append(ANSI_YELLOW);
@@ -124,6 +104,22 @@ public class Spielplan {
 			str.append(ANSI_RESET);
 		} else
 			str.append("     ");
+	}
+
+	private void printHead() {
+		str.append("Welcome to Lazer!\n");
+		str.append("Be fast and set your next position\n");
+		str.append("Your current position: ");
+		str.append(currPos[0]);
+		str.append(", ");
+		str.append(currPos[1]);
+		str.append("\n");
+		str.append("Number of Lazers active: ");
+		str.append(1);
+		str.append("\n");
+		str.append("Your lives: ");
+		for(int i = 1; i <= Game.getPlayer().getHerzen(); i++) str.append("\u001B[33m♥ \u001B[0m");
+		str.append("\n");
 	}
 
 }
