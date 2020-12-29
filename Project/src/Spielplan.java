@@ -159,6 +159,9 @@ public class Spielplan {
 		str.append("Press A to move left\n");
 		str.append("Press S to move down\n");
 		str.append("Press D to move right\n");
+		str.append("Try to not get lazered\n");
+		str.append("And collect some coins\n");
+		str.append("(っ▀¯▀)つ\n");
 		str.append("Enter difficulty: easy: 0->3  medium: 3->10 hard: 10->death ");
 		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
