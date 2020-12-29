@@ -7,10 +7,10 @@ public class Player implements Runnable {
 	// Methode die den Player bewegt
 	private int highscore;
 	static int xkoordinate, ykoordinate, max_xkoordinate, max_ykoordinate;
-	private byte herzen;
-	public int level, aktuelles_level;
+	// private byte herzen;
+	// public int level, aktuelles_level;
 	Spielplan plan;
-	private char alteposition;
+	// private char alteposition;
 	// Lazers laser = new Lazers();
 
 	public void run() {
@@ -26,14 +26,10 @@ public class Player implements Runnable {
 
 	}
 
-	public void setHerzen(byte herzen) {
-		this.herzen = herzen;
-	}
-
-	public Player(int HIGHSCORE, int LEBEN, int SCHWIERIGKEIT, Spielplan Plan) {
-		highscore = HIGHSCORE;
-		herzen = (byte) LEBEN;
-		level = SCHWIERIGKEIT;
+	public Player(Spielplan Plan) {
+		// highscore = HIGHSCORE;
+		// herzen = (byte) LEBEN;
+		// level = SCHWIERIGKEIT;
 		plan = Plan;
 		max_xkoordinate = 16;
 		max_ykoordinate = 16;
@@ -48,20 +44,6 @@ public class Player implements Runnable {
 	public static int getY() {
 		return ykoordinate;
 	}
-
-	public int getHerzen() {
-		return herzen;
-	}
-
-//	public char[][] setPlayer(char[][] spielfeld) throws IOException {
-//
-//		 {
-//			spielfeld[xkoordinate][ykoordinate] = alteposition;
-//			alteposition = spielfeld[xkoordinate][ykoordinate];
-//			spielfeld[xkoordinate][ykoordinate] = 'P';
-//		}
-//
-//	}
 
 	public synchronized void move() throws IOException {
 
@@ -129,43 +111,61 @@ public class Player implements Runnable {
 		return false;
 	}
 
-	public boolean treffer() {
-		// Gibt zurück ob er tot ist, wobei false = tot und true = lebend
-		if (herzen == 1) {
-			return false;
-		}
-		--herzen;
-		return true;
-	}
+//	public int getHerzen() {
+//	return herzen;
+//}
+//
+////public char[][] setPlayer(char[][] spielfeld) throws IOException {
+//
+//	 {
+//		spielfeld[xkoordinate][ykoordinate] = alteposition;
+//		alteposition = spielfeld[xkoordinate][ykoordinate];
+//		spielfeld[xkoordinate][ykoordinate] = 'P';
+//	}
+//
+//}	
+
+//	public void setHerzen(byte herzen) {
+//	this.herzen = herzen;
+//}
+
+//	public boolean treffer() {
+//		// Gibt zurück ob er tot ist, wobei false = tot und true = lebend
+//		if (herzen == 1) {
+//			return false;
+//		}
+//		--herzen;
+//		return true;
+//	}
 
 	// Methode die Input abfragt
 
-	private char input() {
+//	private char input() {
+//
+//		/*
+//		 * // Enter data using BufferReader BufferedReader reader = new
+//		 * BufferedReader(new InputStreamReader(System.in));
+//		 *
+//		 * // Reading data using readLine String name = reader.readLine();
+//		 *
+//		 * return name;
+//		 */
+//
+//		return 'g';
+//	}
 
-		/*
-		 * // Enter data using BufferReader BufferedReader reader = new
-		 * BufferedReader(new InputStreamReader(System.in));
-		 *
-		 * // Reading data using readLine String name = reader.readLine();
-		 *
-		 * return name;
-		 */
-
-		return 'g';
-	}
-
-	private boolean gewonnen() {
-		if (level == aktuelles_level && herzen > 0) {
-			return true;
-		}
-		return false;
-	}
-
-	public boolean nichtzuende() {
-		if (aktuelles_level <= level && herzen > 0) {
-			return true;
-		}
-		return false;
-	}
+//	private boolean gewonnen() {
+//		if (level == aktuelles_level && herzen > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
+//
+//	public boolean nichtzuende() {
+//		if (aktuelles_level <= level && herzen > 0) {
+//			return true;
+//		}
+//		return false;
+//	}
 
 }

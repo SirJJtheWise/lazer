@@ -23,7 +23,7 @@ public class Game implements Runnable {
 			SCHWIERIGKEIT = sc.nextInt();
 		}
 
-		Thread thread = new Thread(new Player(0, 3, 1, spiel));
+		Thread thread = new Thread(new Player(spiel));
 		thread.start();
 
 		Lazers laser = new Lazers(spiel.FELD);
@@ -47,7 +47,7 @@ public class Game implements Runnable {
 			HIGHSCORE += 1000;
 		}
 		thread.stop();
-
+		System.out.println("GAME" + "\nOver");
 //			player.setPlayer(FELD);
 //			Lasers.vorwarnung();
 //			Bomben.vorwarnung();
