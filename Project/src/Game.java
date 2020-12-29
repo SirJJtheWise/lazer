@@ -32,8 +32,9 @@ public class Game implements Runnable {
 			//SCHWIERIGKEIT = sc.nextInt();
 //		}
 		try {
-			spiel.startScreen(sc);
-		} catch (InterruptedException e) {
+			SCHWIERIGKEIT = spiel.startScreen(sc);
+		} catch (Exception e) {
+			SCHWIERIGKEIT = 1;
 			e.printStackTrace();
 		}
 
