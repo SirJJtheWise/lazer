@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 
 public class Spielplan {
 	public static void main(String[] args) {
-		Game game = new Game();
 		Spielplan test = new Spielplan();
 		test.print();
 		System.out.print("\033[H\033[2J");
@@ -25,11 +24,10 @@ public class Spielplan {
 
 	private int[] currPos;
 	volatile static char[][] field = new char[16][16];
-  private StringBuilder str;
+  	private StringBuilder str;
 
 	public Spielplan() {
 		str = new StringBuilder();
-		field = Game.FELD;
 	}
   
 	public synchronized void print() {
@@ -118,7 +116,7 @@ public class Spielplan {
 		str.append(1);
 		str.append("\n");
 		str.append("Your lives: ");
-		for(int i = 1; i <= Game.getPlayer().getHerzen(); i++) str.append("\u001B[33m♥ \u001B[0m");
+		for(int i = 1; i <= Game.LEBEN; i++) str.append("\u001B[33m♥ \u001B[0m");
 		str.append("\n");
 	}
 

@@ -16,9 +16,9 @@ public class Player implements Runnable {
 	public void run() {
 		while (true) {
 			try {
-        Player p = new Player(0, 3, 1, plan);
+//        Player p = new Player(plan);
         Spielplan plan = new Spielplan();
-        Game game = new Game();
+//        Game game = new Game();
 				move();
 
 			} catch (IOException e) {
