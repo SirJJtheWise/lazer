@@ -7,7 +7,7 @@ public class Game implements Runnable {
 	// static boolean ALIVE;
 
 	static int HIGHSCORE = 0;
-
+	static int HIGHESTSCORE = 0;
 	static int LEBEN = 3;
 	static int SCHWIERIGKEIT;
 	Spielplan spiel;
@@ -36,34 +36,42 @@ public class Game implements Runnable {
 
 		spiel.print();
 		thread.start();
+		while (true) {
+			lasers = 8;
+			while (LEBEN > 0) {
+				lasers++;
+				laser.deletlazers();
+				c.deleteCoin();
 
-		lasers = 8;
-		while (LEBEN > 0) {
-			lasers++;
-			laser.deletlazers();
-			c.deleteCoin();
+				c.generateCoin();
+				laser.laserSchießen(lasers / 4);
+				spiel.printIndicator();
 
-			c.generateCoin();
-			laser.laserSchießen(lasers / 4);
-			spiel.printIndicator();
+				try {
+					Thread.sleep(6000);
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
+				long current = System.currentTimeMillis();
+				while (current + 1000l > System.currentTimeMillis()) {
+					spiel.print();
+					if (laser.isInDeath(Player.getX(), Player.getY())) {
+						LEBEN--;
+						System.out.println("SIE HABEN EIN LEBEN VERLOERN");
+						// ANIMATION??
+						HIGHSCORE -= 5000;
+					}
+				}
 
-			try {
-				Thread.sleep(6000);
-			} catch (InterruptedException ex) {
-				Thread.currentThread().interrupt();
+				// print
+				HIGHSCORE += 1000 * lasers / 8;
 			}
-			spiel.print();
-			if (laser.isInDeath(Player.getX(), Player.getY())) {
-				LEBEN--;
-				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
-				// ANIMATION??
-				HIGHSCORE -= 5000;
-			}
-			// print
-			HIGHSCORE += 1000 * lasers / 8;
+			thread.stop();
+			System.out.println("GAME" + "\nOver");
+
+			// if(HIGHSCORE>HIGHESTSCORE)
+
 		}
-		thread.stop();
-		System.out.println("GAME" + "\nOver");
 
 	}
 
