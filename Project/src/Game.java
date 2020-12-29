@@ -52,15 +52,14 @@ public class Game implements Runnable {
 				} catch (InterruptedException ex) {
 					Thread.currentThread().interrupt();
 				}
-				long current = System.currentTimeMillis();
-				while (current + 1000l > System.currentTimeMillis()) {
-					spiel.print();
-					if (laser.isInDeath(Player.getX(), Player.getY())) {
-						LEBEN--;
-						System.out.println("SIE HABEN EIN LEBEN VERLOERN");
-						// ANIMATION??
-						HIGHSCORE -= 5000;
-					}
+
+				spiel.print();
+				if (laser.isInDeath(Player.getX(), Player.getY())) {
+					LEBEN--;
+					System.out.println("SIE HABEN EIN LEBEN VERLOERN");
+					// ANIMATION??
+					HIGHSCORE -= 5000;
+
 				}
 
 				// print
