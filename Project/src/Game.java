@@ -61,7 +61,12 @@ public class Game implements Runnable {
 					System.out.println("SIE HABEN EIN LEBEN VERLOERN");
 					// ANIMATION??
 					HIGHSCORE -= 5000;
-
+					try {
+						spiel.youLostALife();
+					} catch (InterruptedException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 				}
 
 				// print
