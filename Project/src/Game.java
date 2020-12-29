@@ -31,6 +31,12 @@ public class Game implements Runnable {
 		if (sc.hasNextInt()) {
 			SCHWIERIGKEIT = sc.nextInt();
 		}
+//		try {
+//			SCHWIERIGKEIT = spiel.startScreen();
+//		} catch (Exception e) {
+//			SCHWIERIGKEIT = 1;
+//			e.printStackTrace();
+//		}
 		Lazers laser = new Lazers(spiel.field);
 		Coin c = new Coin(spiel.field);
 		Thread thread = new Thread(new Player(spiel, laser, c));
