@@ -17,6 +17,12 @@ public class Game implements Runnable {
 	}
 
 	public void run() {
+
+		System.out.println("Press W to move up\n");
+		System.out.println("Press A to move left\n");
+		System.out.println("Press W to move downw\n");
+		System.out.println("Press W to move right\n");
+
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Schwierigkeit eingeben");
 		if (sc.hasNextInt()) {
@@ -24,19 +30,20 @@ public class Game implements Runnable {
 		}
 		Lazers laser = new Lazers(spiel.field);
 		Thread thread = new Thread(new Player(spiel, laser));
+		Coin c = new Coin(spiel.field);
 		spiel.print();
 		thread.start();
 
+		int laserZaehler = 8;
 		while (LEBEN >= 0) {
-			System.out.println("HIGHSCORE: " + HIGHSCORE);
-
+			laserZaehler++;
 			laser.deletlazers();
-			// delete Coin
-			// spawn Coin
+			c.deleteCoin();
 
-			// Vorwarnung
-			laser.laserSchießen();
+			c.generateCoin();
+			laser.laserSchießen(laserZaehler / 4);
 			spiel.print();
+
 			try {
 				Thread.sleep(6000);
 			} catch (InterruptedException ex) {
@@ -47,6 +54,7 @@ public class Game implements Runnable {
 				LEBEN--;
 				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
 				// ANIMATION??
+				HIGHSCORE -= 5000;
 			}
 			// print
 			HIGHSCORE += 1000;
