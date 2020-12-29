@@ -8,7 +8,7 @@ public class Game implements Runnable {
 	// static boolean ALIVE;
 
 	static int HIGHSCORE = 0;
-
+	static int HIGHESTSCORE = 0;
 	static int LEBEN = 3;
 	static int SCHWIERIGKEIT;
 	Spielplan spiel;
@@ -84,7 +84,8 @@ public class Game implements Runnable {
 			}
 
 			System.out.println("GAME" + "\nOver");
-
+			if (HIGHESTSCORE < HIGHSCORE)
+				HIGHESTSCORE = HIGHSCORE;
 			try {
 				if (spiel.gameOver()) {
 
