@@ -173,9 +173,14 @@ public class Spielplan {
 		// Reading data using readLine
 		//if (reader.ready()) {
 			String name = reader.readLine();
-			if (name.equals("R")) return true;
+			if (name.equals("R")) {
+				reader.close();
+				return true;
+			}
+			reader.close();
 			return false;
 		//}
+
 		//return false;
 	}
 
