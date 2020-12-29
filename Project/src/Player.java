@@ -12,6 +12,7 @@ public class Player implements Runnable {
 	Spielplan plan;
 	// private char alteposition;
 	Lazers laser;
+	Coin c;
 
 	public void run() {
 		while (true) {
@@ -29,12 +30,13 @@ public class Player implements Runnable {
 
 	}
 
-	public Player(Spielplan Plan, Lazers laser) {
+	public Player(Spielplan Plan, Lazers laser, Coin coin) {
 		// highscore = HIGHSCORE;
 		// herzen = (byte) LEBEN;
 		// level = SCHWIERIGKEIT;
 		this.laser = laser;
 		plan = Plan;
+		c = coin;
 		max_xkoordinate = 16;
 		max_ykoordinate = 16;
 		xkoordinate = (int) (Math.random() * max_xkoordinate);
