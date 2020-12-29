@@ -17,7 +17,7 @@ public class Player implements Runnable {
 		while (true) {
 			try {
 //        Player p = new Player(plan);
-        Spielplan plan = new Spielplan();
+				Spielplan plan = new Spielplan();
 //        Game game = new Game();
 				move();
 
