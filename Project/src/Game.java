@@ -7,6 +7,15 @@ public class Game {
 	static int HIGHSCORE = 0;
 	static int LEBEN = 3;
 	static int schwierigkeit;
+	private static Player player;
+
+	public Game() {
+		player = new Player(HIGHSCORE,LEBEN,1,new Spielplan());
+	}
+
+	public static Player getPlayer() {
+		return player;
+	}
 
 	public static void main(String[] args) {
 //		
