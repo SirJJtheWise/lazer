@@ -14,7 +14,6 @@ public class Player implements Runnable {
 	Lazers laser;
 	Coin c;
 	static boolean sleep = false;
-	static boolean sleepForever = false;
 
 	public static void setSleep(boolean sleepy) {
 		sleep = sleepy;
@@ -22,16 +21,7 @@ public class Player implements Runnable {
 
 	public void run() {
 		while (true) {
-			if (sleepForever) {
-				try {
-					wait();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-				sleepForever = false;
-				;
-			}
+
 			try {
 				if (sleep) {
 					try {
