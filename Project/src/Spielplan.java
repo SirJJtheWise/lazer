@@ -51,6 +51,7 @@ public class Spielplan {
 			}
 			str.append("\n");
 		}
+		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
 		str.setLength(0); // clear StringBuilder
 	}
@@ -76,6 +77,7 @@ public class Spielplan {
 			}
 			str.append("\n");
 		}
+		System.out.print("\033[H\033[2J");
 		System.out.println(str.toString());
 		str.setLength(0); // clear StringBuilder
 	}
