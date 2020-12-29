@@ -15,6 +15,7 @@ public class Player {
 	public static void main(String[] args) throws IOException {
 
 		Spielplan plan = new Spielplan();
+		Game game = new Game();
 		Player p = new Player(0, 3, 1, plan);
 
 		p.move();
@@ -75,34 +76,41 @@ public class Player {
 					char eingabe = name.charAt(0);
 					switch (eingabe) {
 					case 'w' -> {
-						ykoordinate++;
+						ykoordinate--;
 						if (außerhalb_des_feldes()) {
-							ykoordinate--;
-						} else
+							ykoordinate++;
+						} else {
+							System.out.print("\033[H\033[2J");
 							plan.print();
+						}
 					}
 
 					case 'a' -> {
 						xkoordinate--;
 						if (außerhalb_des_feldes()) {
 							xkoordinate++;
-						} else
+						} else {
+							System.out.print("\033[H\033[2J");
 							plan.print();
+						}
 					}
 
 					case 'd' -> {
 						xkoordinate++;
 						if (außerhalb_des_feldes()) {
 							xkoordinate--;
-						} else
+						} else {
+							System.out.print("\033[H\033[2J");
 							plan.print();
+						}
 					}
 
 					case 's' -> {
-						ykoordinate--;
+						ykoordinate++;
 						if (außerhalb_des_feldes()) {
 							ykoordinate--;
 						} else {
+							System.out.print("\033[H\033[2J");
 							plan.print();
 						}
 					}
