@@ -10,6 +10,7 @@ public class Game implements Runnable {
 	static int LEBEN = 3;
 	static int SCHWIERIGKEIT;
 	Spielplan spiel;
+	static int lasers;
 
 	public Game(Spielplan spiel) {
 		super();
@@ -35,14 +36,14 @@ public class Game implements Runnable {
 		spiel.print();
 		thread.start();
 
-		int laserZaehler = 8;
+		lasers = 8;
 		while (LEBEN >= 0) {
-			laserZaehler++;
+			lasers++;
 			laser.deletlazers();
 			c.deleteCoin();
 
 			c.generateCoin();
-			laser.laserSchießen(laserZaehler / 4);
+			laser.laserSchießen(lasers / 4);
 			spiel.printIndicator();
 
 			try {
