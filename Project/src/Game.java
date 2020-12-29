@@ -67,9 +67,8 @@ public class Game implements Runnable {
 						e.printStackTrace();
 					}
 				}
-
-				// print
 				HIGHSCORE += 1000 * lasers / 8;
+
 			}
 			thread.stop();
 			System.out.println("GAME" + "\nOver");
