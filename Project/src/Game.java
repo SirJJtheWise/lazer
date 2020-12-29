@@ -53,8 +53,14 @@ public class Game implements Runnable {
 					Thread.currentThread().interrupt();
 				}
 				long current = System.currentTimeMillis();
+				spiel.print();
+				try {
+					Thread.sleep(1500);
+				} catch (InterruptedException ex) {
+					Thread.currentThread().interrupt();
+				}
 				while (current + 1000l > System.currentTimeMillis()) {
-					spiel.print();
+
 					if (laser.isInDeath(Player.getX(), Player.getY())) {
 						LEBEN--;
 						System.out.println("SIE HABEN EIN LEBEN VERLOERN");
