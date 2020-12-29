@@ -93,6 +93,9 @@ public class Game implements Runnable {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			LEBEN = 3;
+			HIGHSCORE = 3;
+
 			// if(HIGHSCORE>HIGHESTSCORE)
 		}
 
