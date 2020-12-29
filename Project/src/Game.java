@@ -53,7 +53,19 @@ public class Game implements Runnable {
 					Thread.currentThread().interrupt();
 				}
 				long current = System.currentTimeMillis();
+				if (laser.isInDeath(Player.getX(), Player.getY())) {
+					LEBEN--;
+					System.out.println("SIE HABEN EIN LEBEN VERLOERN");
+					// ANIMATION??
+					try {
+						spiel.youLostALife();
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+					HIGHSCORE -= 5000;
+				}
 				spiel.print();
+
 				try {
 					Thread.sleep(1500);
 				} catch (InterruptedException ex) {
@@ -61,17 +73,7 @@ public class Game implements Runnable {
 				}
 				while (current + 1000l > System.currentTimeMillis()) {
 
-					if (laser.isInDeath(Player.getX(), Player.getY())) {
-						LEBEN--;
-						System.out.println("SIE HABEN EIN LEBEN VERLOERN");
-						// ANIMATION??
-						try {
-							spiel.youLostALife();
-						} catch (InterruptedException e) {
-							e.printStackTrace();
-						}
-						HIGHSCORE -= 5000;
-					}
+
 				}
 
 				// print
