@@ -24,4 +24,8 @@ public class Coin {
 		int coinFeld = (int) (16 * Math.random());
 
 	}
+
+	public void deleteCoin() {
+
+	}
 }

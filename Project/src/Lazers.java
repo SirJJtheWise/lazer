@@ -59,7 +59,7 @@ public class Lazers {
 		return r.nextInt((max - min) + 1) + min;
 	}
 
-	public boolean isInDeath(int x, int y) {
+	public synchronized boolean isInDeath(int x, int y) {
 		if (todesBereich[x][y] == true) {
 			return true;
 		} else

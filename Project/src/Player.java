@@ -11,11 +11,13 @@ public class Player implements Runnable {
 	public int level, aktuelles_level;
 	Spielplan plan;
 	private char alteposition;
+	// Lazers laser = new Lazers();
 
 	public void run() {
 		while (true) {
 			try {
 				move();
+
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

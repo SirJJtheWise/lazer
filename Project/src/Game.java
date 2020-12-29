@@ -29,7 +29,7 @@ public class Game implements Runnable {
 		Lazers laser = new Lazers(spiel.FELD);
 		spiel.print();
 
-		while (true) {
+		while (LEBEN >= 0) {
 			laser.deletlazers();
 
 			laser.laserSchießen();
@@ -39,8 +39,14 @@ public class Game implements Runnable {
 			} catch (InterruptedException ex) {
 				Thread.currentThread().interrupt();
 			}
-
+			if (laser.isInDeath(Player.getX(), Player.getY())) {
+				LEBEN--;
+				System.out.println("SIE HABEN EIN LEBEN VERLOERN");
+				// ANIMATION??
+			}
+			HIGHSCORE += 1000;
 		}
+		thread.stop();
 
 //			player.setPlayer(FELD);
 //			Lasers.vorwarnung();
