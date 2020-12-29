@@ -24,12 +24,12 @@ public class Spielplan {
 
 	private int[] currPos;
 	volatile static char[][] field = new char[12][12];
-  	private StringBuilder str;
+	private StringBuilder str;
 
 	public Spielplan() {
 		str = new StringBuilder();
 	}
-  
+
 	public synchronized void print() {
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
@@ -56,7 +56,7 @@ public class Spielplan {
 		str.setLength(0); // clear StringBuilder
 	}
 
-	public void printIndicator() {
+	public synchronized void printIndicator() {
 		// char[][] field =
 		// {{0,0,0,'h',0},{0,0,0,'h',0},{'v','v','v','v','v'},{0,0,0,'h',0},{0,0,0,'h',0}};
 		currPos = new int[] { Player.getX(), Player.getY() };
@@ -86,15 +86,16 @@ public class Spielplan {
 		str.append("|");
 		if (w == currPos[0] && h == currPos[1]) {
 			str.append(ANSI_CYAN);
-			if (n == 1) str.append("(ง'̀-'́)ง");
-			else str.append("       ");
+			if (n == 1)
+				str.append("(ง'̀-'́)ง");
+			else
+				str.append("       ");
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'v') {
 			if (indicator) {
 				str.append(ANSI_PURPLE);
 				str.append("   |   ");
-			}
-			else {
+			} else {
 				str.append(ANSI_RED);
 				str.append("  |||  ");
 			}
@@ -103,8 +104,7 @@ public class Spielplan {
 			if (indicator) {
 				str.append(ANSI_PURPLE);
 				str.append("   -   ");
-			}
-			else {
+			} else {
 				str.append(ANSI_RED);
 				str.append("  ---  ");
 			}
@@ -114,7 +114,7 @@ public class Spielplan {
 
 			str.append("̅$̅(̲̅5̲̅)̅$");
 			str.append(ANSI_RESET);
-		}else
+		} else
 			str.append("       ");
 	}
 
@@ -125,7 +125,8 @@ public class Spielplan {
 		str.append(Game.HIGHSCORE);
 		str.append("\n");
 		str.append("Your lives: ");
-		for(int i = 1; i <= Game.LEBEN; i++) str.append("\u001B[33m♥ \u001B[0m");
+		for (int i = 1; i <= Game.LEBEN; i++)
+			str.append("\u001B[33m♥ \u001B[0m");
 		str.append("\n");
 	}
 
