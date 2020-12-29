@@ -21,22 +21,23 @@ public class Game implements Runnable {
 
 	public void run() {
 
-		System.out.println("Press W to move up\n");
-		System.out.println("Press A to move left\n");
-		System.out.println("Press S to move downw\n");
-		System.out.println("Press D to move right\n");
+//		System.out.println("Press W to move up\n");
+//		System.out.println("Press A to move left\n");
+//		System.out.println("Press S to move downw\n");
+//		System.out.println("Press D to move right\n");
 
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Schwierigkeit eingeben");
-		if (sc.hasNextInt()) {
-			SCHWIERIGKEIT = sc.nextInt();
-		}
-//		try {
-//			SCHWIERIGKEIT = spiel.startScreen();
-//		} catch (Exception e) {
-//			SCHWIERIGKEIT = 1;
-//			e.printStackTrace();
+		//System.out.println("Schwierigkeit eingeben");
+//		if (sc.hasNextInt()) {
+			//SCHWIERIGKEIT = sc.nextInt();
 //		}
+		try {
+			SCHWIERIGKEIT = spiel.startScreen(sc);
+		} catch (Exception e) {
+			SCHWIERIGKEIT = 1;
+			e.printStackTrace();
+		}
+
 		Lazers laser = new Lazers(spiel.field);
 		Coin c = new Coin(spiel.field);
 		Thread thread = new Thread(new Player(spiel, laser, c));
