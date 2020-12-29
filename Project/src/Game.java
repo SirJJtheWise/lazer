@@ -43,7 +43,7 @@ public class Game implements Runnable {
 
 			c.generateCoin();
 			laser.laserSchießen(laserZaehler / 4);
-			spiel.print();
+			spiel.printIndicator();
 
 			try {
 				Thread.sleep(6000);
