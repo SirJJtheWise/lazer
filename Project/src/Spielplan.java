@@ -36,18 +36,18 @@ public class Spielplan {
 		currPos = new int[] { Player.getX(), Player.getY() };
 		printHead();
 		for (int w = 0; w < field.length; w++) {
-			str.append("------");
+			str.append("--------");
 		}
 		str.append("\n");
 		for (int h = 0; h < field[0].length; h++) {
 			for (int n = 0; n < 2; n++) {
 				for (int w = 0; w < field.length; w++) {
-					fieldOutput(w, h, false);
+					fieldOutput(w, h, false, n);
 				}
 				str.append("|\n");
 			}
 			for (int w = 0; w < field.length; w++) {
-				str.append("------");
+				str.append("--------");
 			}
 			str.append("\n");
 		}
@@ -62,18 +62,18 @@ public class Spielplan {
 		currPos = new int[] { Player.getX(), Player.getY() };
 		printHead();
 		for (int w = 0; w < field.length; w++) {
-			str.append("------");
+			str.append("--------");
 		}
 		str.append("\n");
 		for (int h = 0; h < field[0].length; h++) {
-			for (int n = 0; n < 2; n++) {
+			for (int n = 0; n < 3; n++) {
 				for (int w = 0; w < field.length; w++) {
-					fieldOutput(w, h, true);
+					fieldOutput(w, h, true, n);
 				}
 				str.append("|\n");
 			}
 			for (int w = 0; w < field.length; w++) {
-				str.append("------");
+				str.append("--------");
 			}
 			str.append("\n");
 		}
@@ -82,38 +82,39 @@ public class Spielplan {
 		str.setLength(0); // clear StringBuilder
 	}
 
-	private void fieldOutput(int w, int h, boolean indicator) {
+	private void fieldOutput(int w, int h, boolean indicator, int n) {
 		str.append("|");
 		if (w == currPos[0] && h == currPos[1]) {
 			str.append(ANSI_CYAN);
-			str.append("  x  ");
+			if (n == 1) str.append("(ง'̀-'́)ง");
+			else str.append("       ");
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'v') {
 			if (indicator) {
 				str.append(ANSI_PURPLE);
-				str.append("  |  ");
+				str.append("   |   ");
 			}
 			else {
 				str.append(ANSI_RED);
-				str.append(" ||| ");
+				str.append("  |||  ");
 			}
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'h') {
 			if (indicator) {
 				str.append(ANSI_PURPLE);
-				str.append("  -  ");
+				str.append("   -   ");
 			}
 			else {
 				str.append(ANSI_RED);
-				str.append(" --- ");
+				str.append("  ---  ");
 			}
 			str.append(ANSI_RESET);
 		} else if (field[w][h] == 'c') {
 			str.append(ANSI_YELLOW);
-			str.append("  c  ");
+			str.append("   c   ");
 			str.append(ANSI_RESET);
 		}else
-			str.append("     ");
+			str.append("       ");
 	}
 
 	private void printHead() {
